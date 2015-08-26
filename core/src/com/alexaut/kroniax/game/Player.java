@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player {
@@ -17,12 +16,11 @@ public class Player {
     private float mAngle;
 
     private float[] mPoints;
+    private Vector2 mCollisionPoints[];
 
-    public Player(MapProperties props) {
+    public Player(LevelProperties props) {
 
-        mPosition = new Vector2();
-        mPosition.x = Integer.parseInt(props.get("spawn_x", String.class)) * props.get("tilewidth", Integer.class);
-        mPosition.y = Integer.parseInt(props.get("spawn_y", String.class)) * props.get("tileheight", Integer.class);
+        mPosition = new Vector2(props.spawn);
 
         System.out.println(mPosition.x + " " + mPosition.y);
 
@@ -30,6 +28,10 @@ public class Player {
         mVelocity = 200.f;
 
         mPoints = new float[8];
+        mCollisionPoints = new Vector2[3];
+        mCollisionPoints[0] = new Vector2();
+        mCollisionPoints[1] = new Vector2();
+        mCollisionPoints[2] = new Vector2();
     }
 
     public void update(float deltaTime) {
@@ -62,21 +64,31 @@ public class Player {
         final float halfXSize = mSize.x / 2.f;
         final float halfYSize = mSize.y / 2.f;
 
+        // Round the position, because we round the camera too
+        // Otherwise the ship would jump pixels and not fly smooth
+        final float pos_x = Math.round(mPosition.x);
+        final float pos_y = Math.round(mPosition.y);
+
         // Calculate right point
-        mPoints[0] = mPosition.x + (halfXSize * cos);
-        mPoints[1] = mPosition.y + (halfXSize * sin);
+        mPoints[0] = pos_x + (halfXSize * cos);
+        mPoints[1] = pos_y + (halfXSize * sin);
 
         // Calculate left upper point
-        mPoints[2] = mPosition.x - (halfXSize * cos) - (halfYSize * sin);
-        mPoints[3] = mPosition.y + (halfYSize * cos) - (halfXSize * sin);
+        mPoints[2] = pos_x - (halfXSize * cos) - (halfYSize * sin);
+        mPoints[3] = pos_y + (halfYSize * cos) - (halfXSize * sin);
 
         // Calculate left bottom point
-        mPoints[4] = mPosition.x - (halfXSize * cos) + (halfYSize * sin);
-        mPoints[5] = mPosition.y - (halfYSize * cos) - (halfXSize * sin);
+        mPoints[4] = pos_x - (halfXSize * cos) + (halfYSize * sin);
+        mPoints[5] = pos_y - (halfYSize * cos) - (halfXSize * sin);
 
         // Optical point middle left
-        mPoints[6] = mPosition.x - (halfXSize * cos / 2.f);
-        mPoints[7] = mPosition.y - (halfXSize * sin / 2.f);
+        mPoints[6] = pos_x - (halfXSize * cos / 2.f);
+        mPoints[7] = pos_y - (halfXSize * sin / 2.f);
+
+        // Update Collision points
+        mCollisionPoints[0].set(mPoints[0], mPoints[1]);
+        mCollisionPoints[1].set(mPoints[2], mPoints[3]);
+        mCollisionPoints[2].set(mPoints[4], mPoints[5]);
     }
 
     public Vector2 getPosition() {
@@ -85,6 +97,10 @@ public class Player {
 
     public void setPosition(Vector2 position) {
         mPosition = position;
+    }
+
+    public Vector2[] getCollisionPoints() {
+        return mCollisionPoints;
     }
 
 }

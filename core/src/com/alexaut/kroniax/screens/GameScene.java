@@ -1,7 +1,5 @@
 package com.alexaut.kroniax.screens;
 
-import java.util.Iterator;
-
 import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.Level;
@@ -30,18 +28,16 @@ public class GameScene implements Screen {
 
         TiledMap levelMap = new TmxMapLoader().load("data/levels/official/level1.tmx");
 
-        Iterator<String> it = levelMap.getProperties().getKeys();
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }
-
+        // Load the level (properties, collision handler, renderer) and the
+        // start values of the player
         try {
             mLevel = new Level(levelMap);
 
             mPlayer = new Player(mLevel.getProperties());
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             // Level not compatible
-
+            System.out.println(e.getMessage());
+            System.exit(-1);
         }
 
     }
@@ -82,6 +78,7 @@ public class GameScene implements Screen {
     @Override
     public void resize(int width, int height) {
         mCamera.updateViewport(width, height);
+        mCamera.updateViewport(1280, 720);
     }
 
     @Override
@@ -103,8 +100,7 @@ public class GameScene implements Screen {
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-
+        mLevel.dispose();
     }
 
 }

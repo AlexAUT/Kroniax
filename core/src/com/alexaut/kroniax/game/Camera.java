@@ -14,9 +14,9 @@ public class Camera {
         mCameraOffset = new Vector2(300, 0);
     }
 
-    public void update(Vector2 mPlayerPosiion) {
-        mCamera.position.x = Math.round(mPlayerPosiion.x + mCameraOffset.x);
-        mCamera.position.y = Math.round(mPlayerPosiion.y + mCameraOffset.y);
+    public void update(Vector2 mPlayerPosition) {
+        mCamera.position.x = Math.round(mPlayerPosition.x + mCameraOffset.x);
+        mCamera.position.y = Math.round(mPlayerPosition.y + mCameraOffset.y);
         mCamera.update();
     }
 
