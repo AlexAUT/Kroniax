@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -11,8 +12,11 @@ public class LevelCollisionHandler {
 
     ArrayList<TiledMapTileLayer> mCollisionLayers;
 
-    public LevelCollisionHandler(TiledMap map) throws Exception {
+    LevelProperties mLevelProperties;
+
+    public LevelCollisionHandler(TiledMap map, LevelProperties properties) throws Exception {
         mCollisionLayers = new ArrayList<TiledMapTileLayer>();
+        mLevelProperties = properties;
 
         // Check for layers with the collision property
         for (MapLayer layer : map.getLayers()) {
@@ -30,15 +34,17 @@ public class LevelCollisionHandler {
     public boolean collide(Player player) {
         for (TiledMapTileLayer layer : mCollisionLayers) {
 
-            int tileWidth = layer.getProperties().get("tilewidth", Integer.class);
-            int tileHeight = layer.getProperties().get("tileheight", Integer.class);
-            int height = layer.getProperties().get("height", Integer.class);
+            Iterator<String> it = layer.getProperties().getKeys();
+            while (it.hasNext()) {
+                System.out.println(it.next());
+            }
 
             for (Vector2 point : player.getCollisionPoints()) {
-                int x = (int) (point.x / tileWidth);
-                int y = height - (int) (point.y / tileHeight);
+                int x = (int) (point.x / mLevelProperties.tileSize.x);
+                int y = (int) ((point.y / mLevelProperties.tileSize.y));
                 // Check if this tile is not null => collision!
-                if (layer.getCell(x, y).getTile() != null)
+                System.out.println("Coords: " + x + " | " + y);
+                if (layer.getCell(x, y) != null)
                     return true;
             }
         }

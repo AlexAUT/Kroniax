@@ -50,8 +50,11 @@ public class GameScene implements Screen {
     public void update(float deltaTime) {
         mLevel.update(deltaTime);
         mPlayer.update(deltaTime);
-
         mCamera.update(mPlayer.getPosition());
+
+        // Check collision
+        if (mLevel.checkCollision(mPlayer))
+            System.exit(0);
 
         if (Gdx.input.isKeyPressed(Input.Keys.F1))
             System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());

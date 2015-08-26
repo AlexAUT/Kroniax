@@ -16,13 +16,17 @@ public class Level {
         // Setup the properties
         mProperties = new LevelProperties(map);
         // Setup the collision handler
-        mCollisionHandler = new LevelCollisionHandler(map);
+        mCollisionHandler = new LevelCollisionHandler(map, mProperties);
         // Setup the renderer
         mRenderer = new LevelRenderer(map);
     }
 
     public void update(float deltaTime) {
 
+    }
+
+    public boolean checkCollision(Player player) {
+        return mCollisionHandler.collide(player);
     }
 
     public void render(Camera camera) {
