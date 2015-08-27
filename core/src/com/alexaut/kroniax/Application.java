@@ -1,6 +1,6 @@
 package com.alexaut.kroniax;
 
-import com.alexaut.kroniax.screens.GameScene;
+import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -16,13 +16,15 @@ public class Application extends Game {
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
 
-        setScreen(new GameScene(this));
+        setScreen(new MenuScene(this));
     }
 
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
         super.dispose();
+        mSpriteBatch.dispose();
+        mShapeRenderer.dispose();
     }
 
     @Override

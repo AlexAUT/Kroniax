@@ -14,6 +14,7 @@ public class Player {
 
     private float mVelocity;
     private float mAngle;
+    private float mGravity;
 
     private float[] mPoints;
     private Vector2 mCollisionPoints[];
@@ -25,7 +26,8 @@ public class Player {
         System.out.println(mPosition.x + " " + mPosition.y);
 
         mSize = new Vector2(50, 35);
-        mVelocity = 200.f;
+        mVelocity = props.velocity;
+        mGravity = props.gravity;
 
         mPoints = new float[8];
         mCollisionPoints = new Vector2[3];
@@ -39,6 +41,12 @@ public class Player {
             mAngle += deltaTime;
         if (Gdx.input.isKeyPressed(Input.Keys.S))
             mAngle -= deltaTime;
+
+        // Update angle with gravity and user input
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isTouched())
+            mAngle += mGravity * deltaTime;
+        else
+            mAngle -= mGravity * deltaTime;
 
         final float cos = (float) Math.cos(mAngle);
         final float sin = (float) Math.sin(mAngle);

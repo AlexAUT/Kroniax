@@ -12,6 +12,8 @@ public class LevelProperties {
     public Vector2 tileCount;
 
     public Vector2 spawn;
+    public float velocity;
+    public float gravity;
 
     public LevelProperties(TiledMap level) throws Exception {
 
@@ -47,6 +49,12 @@ public class LevelProperties {
                 spawn = new Vector2(0, spawn_y);
             else
                 spawn.y = spawn_y;
+        }
+        if (props.containsKey("gravity")) {
+            gravity = Float.parseFloat(props.get("gravity", String.class));
+        }
+        if (props.containsKey("velocity")) {
+            velocity = Float.parseFloat(props.get("velocity", String.class));
         }
     }
 

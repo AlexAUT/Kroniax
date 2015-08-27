@@ -21,6 +21,8 @@ public class GameScene implements Screen {
     Level mLevel;
     Player mPlayer;
 
+    boolean mStarted = false;
+
     public GameScene(Application app) {
         mApp = app;
 
@@ -48,6 +50,12 @@ public class GameScene implements Screen {
     }
 
     public void update(float deltaTime) {
+        if (Gdx.input.isTouched())
+            mStarted = true;
+
+        if (!mStarted) {
+            deltaTime = 0;
+        }
         mLevel.update(deltaTime);
         mPlayer.update(deltaTime);
         mCamera.update(mPlayer.getPosition());
@@ -58,6 +66,7 @@ public class GameScene implements Screen {
 
         if (Gdx.input.isKeyPressed(Input.Keys.F1))
             System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
+
     }
 
     @Override
