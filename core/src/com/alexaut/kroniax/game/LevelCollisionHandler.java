@@ -1,7 +1,6 @@
 package com.alexaut.kroniax.game;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -33,17 +32,10 @@ public class LevelCollisionHandler {
 
     public boolean collide(Player player) {
         for (TiledMapTileLayer layer : mCollisionLayers) {
-
-            Iterator<String> it = layer.getProperties().getKeys();
-            while (it.hasNext()) {
-                System.out.println(it.next());
-            }
-
             for (Vector2 point : player.getCollisionPoints()) {
                 int x = (int) (point.x / mLevelProperties.tileSize.x);
                 int y = (int) ((point.y / mLevelProperties.tileSize.y));
                 // Check if this tile is not null => collision!
-                System.out.println("Coords: " + x + " | " + y);
                 if (layer.getCell(x, y) != null)
                     return true;
             }
