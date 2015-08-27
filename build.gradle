@@ -74,8 +74,6 @@ project(":html") {
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion:sources"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion:sources"
         compile "com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources"
-        compile "com.kotcrab.vis:vis-ui:0.8.1:sources"
-        compile "com.kotcrab.vis:vis-runtime:0.2.1:sources"
     }
 }
 
