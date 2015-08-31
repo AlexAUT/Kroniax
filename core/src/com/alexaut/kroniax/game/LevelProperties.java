@@ -14,8 +14,7 @@ public class LevelProperties {
     public float velocity;
     public float gravity;
 
-    public LevelProperties(TileMap level) throws Exception {
-
+    public LevelProperties(TileMap level) throws Exception {        
         parseMapDetails(level.getProperties());
 
         checkEssentialValues();
@@ -41,12 +40,14 @@ public class LevelProperties {
             else
                 spawn.y = spawn_y;
         }
-        if (props.hasProperty("gravity")) {
+        if (props.hasProperty("gravity")) 
             gravity = props.get("gravity");
-        }
-        if (props.hasProperty("velocity")) {
+        else
+            gravity = 1.f;
+        if (props.hasProperty("velocity")) 
             velocity = props.get("velocity");
-        }
+        else
+            velocity = 300;
     }
 
     private void checkEssentialValues() throws Exception {
