@@ -30,8 +30,8 @@ public class Level {
         return mCollisionHandler.collide(player);
     }
 
-    public void render(SpriteBatch renderer) {
-        mRenderer.render(renderer);
+    public void render(SpriteBatch renderer, Camera camera) {
+        mRenderer.render(renderer, camera);
     }
 
     public LevelProperties getProperties() {

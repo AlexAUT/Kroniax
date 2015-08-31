@@ -17,12 +17,21 @@ public class LevelRenderer {
 
     }
 
-    public void render(SpriteBatch renderer) {
+    public void render(SpriteBatch renderer, Camera camera) {
+        //Check which columns are in the frustum
+        int min = (int) ((camera.getOrthoCamera().position.x - camera.getOrthoCamera().viewportWidth / 2.f) / mMap.getTileWidth()) - 1;
+        if(min < 0)
+            min = 0;
+        
+        int max = (int) (min + (camera.getOrthoCamera().viewportWidth / mMap.getTileWidth())) + 1;
+        if(max >= mMap.getWidth())
+            max = mMap.getWidth() - 1;
+        
         // Render tile layers
         int height = mMap.getHeight();
 
         for (TileLayer layer : mMap.getTileLayers()) {
-            for (int x = 0; x < layer.getColumns().size(); x++) {
+            for (int x = min; x <= max; x++) {
                 TileColumn col = layer.getColumns().get(x);
                 ArrayList<TextureRegion> tiles = col.getTiles();
                 for (int i = 0; i < tiles.size(); i++) {

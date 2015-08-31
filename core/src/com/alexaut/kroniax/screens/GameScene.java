@@ -96,7 +96,7 @@ public class GameScene implements Screen {
         SpriteBatch spriteBatch = mApp.getSpriteBatch();
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(mCamera.getTransform());
-        mLevel.render(spriteBatch);
+        mLevel.render(spriteBatch, mCamera);
         spriteBatch.end();
 
         // Render Player
