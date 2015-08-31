@@ -8,20 +8,17 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class MenuScene implements Screen {
 
-    private final Application mApp;
-
     private Gui mGui;
 
     public MenuScene(Application app) {
-        mApp = app;
 
         mGui = new Gui(app);
     }
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-
+        mGui.show();
+        mGui.fadeActiveIn();
     }
 
     @Override
@@ -54,8 +51,7 @@ public class MenuScene implements Screen {
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-
+        mGui.hide();
     }
 
     @Override

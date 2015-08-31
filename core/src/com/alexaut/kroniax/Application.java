@@ -10,13 +10,17 @@ public class Application extends Game {
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
 
+    private MenuScene mMenuScene;
+
     @Override
     public void create() {
 
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
 
-        setScreen(new MenuScene(this));
+        mMenuScene = new MenuScene(this);
+
+        setScreen(mMenuScene);
     }
 
     @Override
@@ -25,6 +29,7 @@ public class Application extends Game {
         super.dispose();
         mSpriteBatch.dispose();
         mShapeRenderer.dispose();
+        mMenuScene.dispose();
     }
 
     @Override
@@ -57,6 +62,10 @@ public class Application extends Game {
 
     public ShapeRenderer getShapeRenderer() {
         return mShapeRenderer;
+    }
+
+    public MenuScene getMenuScene() {
+        return mMenuScene;
     }
 
 }

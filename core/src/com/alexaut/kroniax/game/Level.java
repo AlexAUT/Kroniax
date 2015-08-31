@@ -1,16 +1,17 @@
 package com.alexaut.kroniax.game;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.alexaut.kroniax.game.tilemap.TileMap;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Level {
+
+    TileMap mMap;
 
     LevelProperties mProperties;
     LevelCollisionHandler mCollisionHandler;
     final LevelRenderer mRenderer;
 
-    TiledMap mMap;
-
-    public Level(TiledMap map) throws Exception {
+    public Level(TileMap map) throws Exception {
         // Load map
         mMap = map;
         // Setup the properties
@@ -29,8 +30,8 @@ public class Level {
         return mCollisionHandler.collide(player);
     }
 
-    public void render(Camera camera) {
-        mRenderer.render(camera);
+    public void render(SpriteBatch renderer) {
+        mRenderer.render(renderer);
     }
 
     public LevelProperties getProperties() {

@@ -23,8 +23,6 @@ public class Player {
 
         mPosition = new Vector2(props.spawn);
 
-        System.out.println(mPosition.x + " " + mPosition.y);
-
         mSize = new Vector2(50, 35);
         mVelocity = props.velocity;
         mGravity = props.gravity;

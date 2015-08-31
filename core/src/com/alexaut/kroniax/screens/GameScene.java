@@ -4,13 +4,14 @@ import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.Level;
 import com.alexaut.kroniax.game.Player;
+import com.alexaut.kroniax.game.tilemap.TileMap;
+import com.alexaut.kroniax.game.tilemap.TileMapLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class GameScene implements Screen {
 
@@ -23,17 +24,25 @@ public class GameScene implements Screen {
 
     boolean mStarted = false;
 
-    public GameScene(Application app) {
+    TileMap mMap;
+
+    public GameScene(Application app, String lvlPath) {
         mApp = app;
 
         mCamera = new Camera();
 
-        TiledMap levelMap = new TmxMapLoader().load("data/levels/official/level1.tmx");
+        try {
+            mMap = new TileMapLoader().load(Gdx.files.internal(lvlPath));
+        } catch (Exception e1) {
+            System.out.println(e1.getMessage());
+            e1.printStackTrace();
+            mMap = new TileMap();
+        }
 
         // Load the level (properties, collision handler, renderer) and the
         // start values of the player
         try {
-            mLevel = new Level(levelMap);
+            mLevel = new Level(mMap);
 
             mPlayer = new Player(mLevel.getProperties());
         } catch (Exception e) {
@@ -50,6 +59,7 @@ public class GameScene implements Screen {
     }
 
     public void update(float deltaTime) {
+
         if (Gdx.input.isTouched())
             mStarted = true;
 
@@ -67,6 +77,9 @@ public class GameScene implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.F1))
             System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+            mApp.setScreen(mApp.getMenuScene());
+
     }
 
     @Override
@@ -78,7 +91,11 @@ public class GameScene implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Now render
-        mLevel.render(mCamera);
+        SpriteBatch spriteBatch = mApp.getSpriteBatch();
+        spriteBatch.begin();
+        spriteBatch.setProjectionMatrix(mCamera.getTransform());
+        mLevel.render(spriteBatch);
+        spriteBatch.end();
 
         // Render Player
         // Setup ShapeRenderer

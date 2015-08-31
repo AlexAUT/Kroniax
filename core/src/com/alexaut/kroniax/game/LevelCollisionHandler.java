@@ -2,28 +2,24 @@ package com.alexaut.kroniax.game;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.alexaut.kroniax.game.tilemap.TileLayer;
+import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.badlogic.gdx.math.Vector2;
 
 public class LevelCollisionHandler {
 
-    ArrayList<TiledMapTileLayer> mCollisionLayers;
+    ArrayList<TileLayer> mCollisionLayers;
 
     LevelProperties mLevelProperties;
 
-    public LevelCollisionHandler(TiledMap map, LevelProperties properties) throws Exception {
-        mCollisionLayers = new ArrayList<TiledMapTileLayer>();
+    public LevelCollisionHandler(TileMap map, LevelProperties properties) {
+        mCollisionLayers = new ArrayList<TileLayer>();
         mLevelProperties = properties;
 
         // Check for layers with the collision property
-        for (MapLayer layer : map.getLayers()) {
-            if (layer.getProperties().containsKey("collision")) {
-                if (layer instanceof TiledMapTileLayer) {
-                    mCollisionLayers.add((TiledMapTileLayer) layer);
-                } else
-                    throw new Exception("collision property is only allowed on tile layers!");
+        for (TileLayer layer : map.getTileLayers()) {
+            if (layer.getProperties().hasProperty("collision")) {
+                mCollisionLayers.add(layer);
             }
         }
 
@@ -31,12 +27,13 @@ public class LevelCollisionHandler {
     }
 
     public boolean collide(Player player) {
-        for (TiledMapTileLayer layer : mCollisionLayers) {
+        for (TileLayer layer : mCollisionLayers) {
             for (Vector2 point : player.getCollisionPoints()) {
                 int x = (int) (point.x / mLevelProperties.tileSize.x);
                 int y = (int) ((point.y / mLevelProperties.tileSize.y));
+                y = (int) (mLevelProperties.tileCount.y - y);
                 // Check if this tile is not null => collision!
-                if (layer.getCell(x, y) != null)
+                if (layer.getTile(x, y) != null)
                     return true;
             }
         }
