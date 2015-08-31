@@ -29,8 +29,9 @@ public class TileLayer {
     }
 
     public TextureRegion getTile(int x, int y) {
-        System.out.println(x + " | " + y);
-        return mColumns.get(x).getTile(y);
+        if(x >= 0 && x < mColumns.size())
+            return mColumns.get(x).getTile(y);
+        return null;
     }
 
     public void setName(String name) {
