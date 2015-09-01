@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player {
@@ -42,9 +41,9 @@ public class Player {
 
         // Update angle with gravity and user input
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isTouched())
-            mAngle += mGravity * deltaTime;
+            mAngle += mGravity * deltaTime / 100.f;
         else
-            mAngle -= mGravity * deltaTime;
+            mAngle -= mGravity * deltaTime / 100.f;
 
         final float cos = (float) Math.cos(mAngle);
         final float sin = (float) Math.sin(mAngle);
@@ -55,12 +54,8 @@ public class Player {
 
     public void render(ShapeRenderer renderer) {
         renderer.setColor(Color.WHITE);
-        renderer.begin(ShapeType.Filled);
-
         renderer.triangle(mPoints[0], mPoints[1], mPoints[2], mPoints[3], mPoints[6], mPoints[7]);
         renderer.triangle(mPoints[0], mPoints[1], mPoints[4], mPoints[5], mPoints[6], mPoints[7]);
-
-        renderer.end();
     }
 
     public void updatePoints() {

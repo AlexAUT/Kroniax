@@ -12,6 +12,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class GameScene implements Screen {
 
@@ -36,7 +37,7 @@ public class GameScene implements Screen {
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             e1.printStackTrace();
-            mMap = new TileMap();
+            goBackToMenu();
         }
 
         // Load the level (properties, collision handler, renderer) and the
@@ -47,8 +48,7 @@ public class GameScene implements Screen {
             mPlayer = new Player(mLevel.getProperties());
         } catch (Exception e) {
             // Level not compatible
-            System.out.println(e.getMessage());
-            System.exit(-1);
+            goBackToMenu();
         }
 
     }
@@ -71,16 +71,14 @@ public class GameScene implements Screen {
         mCamera.update(mPlayer.getPosition());
 
         // Check collision
-        if (mLevel.checkCollision(mPlayer)) {
-            mApp.getScreen().dispose();
-            mApp.setScreen(mApp.getMenuScene());
-        }
+        if (mLevel.checkCollision(mPlayer))
+            goBackToMenu();
 
         if (Gdx.input.isKeyPressed(Input.Keys.F1))
             System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-            mApp.setScreen(mApp.getMenuScene());
+            goBackToMenu();
 
     }
 
@@ -92,18 +90,23 @@ public class GameScene implements Screen {
         // Clear screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // Now render
+        // Setup the sprite renderer
         SpriteBatch spriteBatch = mApp.getSpriteBatch();
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(mCamera.getTransform());
-        mLevel.render(spriteBatch, mCamera);
+        // Setup the shape renderer
+        ShapeRenderer shapeRenderer = mApp.getShapeRenderer();
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setProjectionMatrix(mCamera.getTransform());
+        // Now render
+        mLevel.render(spriteBatch, shapeRenderer, mCamera);
         spriteBatch.end();
 
         // Render Player
         // Setup ShapeRenderer
-        ShapeRenderer shapeRenderer = mApp.getShapeRenderer();
         shapeRenderer.setProjectionMatrix(mCamera.getTransform());
         mPlayer.render(shapeRenderer);
+        shapeRenderer.end();
     }
 
     @Override
@@ -132,6 +135,11 @@ public class GameScene implements Screen {
     @Override
     public void dispose() {
         mLevel.dispose();
+    }
+
+    public void goBackToMenu() {
+        mApp.getScreen().dispose();
+        mApp.setScreen(mApp.getMenuScene());
     }
 
 }

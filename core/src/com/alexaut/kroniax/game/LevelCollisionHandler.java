@@ -17,13 +17,12 @@ public class LevelCollisionHandler {
         mLevelProperties = properties;
 
         // Check for layers with the collision property
+        System.out.println(map.getTileLayers().size());
         for (TileLayer layer : map.getTileLayers()) {
             if (layer.getProperties().hasProperty("collision")) {
                 mCollisionLayers.add(layer);
             }
         }
-
-        System.out.println("Found " + mCollisionLayers.size() + " collision layers.");
     }
 
     public boolean collide(Player player) {

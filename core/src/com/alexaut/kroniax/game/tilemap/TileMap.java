@@ -2,6 +2,7 @@ package com.alexaut.kroniax.game.tilemap;
 
 import java.util.ArrayList;
 
+import com.alexaut.kroniax.game.LevelObject;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TileMap {
@@ -10,11 +11,13 @@ public class TileMap {
 
     private ArrayList<Tileset> mTilesets;
     private ArrayList<TileLayer> mTileLayers;
+    private ArrayList<LevelObject> mLevelObjects;
 
     public TileMap() {
         mProperties = new Properties();
         mTilesets = new ArrayList<Tileset>();
         mTileLayers = new ArrayList<TileLayer>();
+        mLevelObjects = new ArrayList<LevelObject>();
     }
 
     public Properties getProperties() {
@@ -27,6 +30,10 @@ public class TileMap {
 
     public ArrayList<TileLayer> getTileLayers() {
         return mTileLayers;
+    }
+
+    public ArrayList<LevelObject> getLevelObjects() {
+        return mLevelObjects;
     }
 
     public TextureRegion getTileRegion(int id) {

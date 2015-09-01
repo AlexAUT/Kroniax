@@ -2,6 +2,7 @@ package com.alexaut.kroniax.game;
 
 import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Level {
 
@@ -30,8 +31,8 @@ public class Level {
         return mCollisionHandler.collide(player);
     }
 
-    public void render(SpriteBatch renderer, Camera camera) {
-        mRenderer.render(renderer, camera);
+    public void render(SpriteBatch spriteRenderer, ShapeRenderer shapeRenderer, Camera camera) {
+        mRenderer.render(spriteRenderer, shapeRenderer, camera);
     }
 
     public LevelProperties getProperties() {

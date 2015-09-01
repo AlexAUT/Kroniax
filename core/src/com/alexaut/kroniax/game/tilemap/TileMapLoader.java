@@ -1,5 +1,6 @@
 package com.alexaut.kroniax.game.tilemap;
 
+import com.alexaut.kroniax.game.gameobjects.RectLevelObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -13,6 +14,7 @@ public class TileMapLoader {
         parseProperties(map, fileContent);
         parseTilesets(map, fileContent);
         parseTileLayers(map, fileContent);
+        parseMapObjects(map, fileContent);
 
         return map;
     }
@@ -67,17 +69,17 @@ public class TileMapLoader {
     }
 
     private void parseTileLayers(TileMap map, String[] file) {
-        boolean foundStartTag = false;
+        boolean insideLayer = false;
         for (int i = 0; i < file.length; i++) {
             if (file[i].equalsIgnoreCase("[layer]")) {
-                foundStartTag = true;
+                insideLayer = true;
                 map.getTileLayers().add(new TileLayer(map.getWidth()));
                 // Get name
                 map.getTileLayers().get(map.getTileLayers().size() - 1).setName(file[++i]);
                 i++; // Tile dimensions not used here
             } else if (file[i].equalsIgnoreCase("[/layer]"))
-                break;
-            else if (foundStartTag) {
+                insideLayer = false;
+            else if (insideLayer) {
                 if (file[i].equalsIgnoreCase("[data]"))
                     i = parseLayerData(++i, file, map);
                 else if (file[i].equalsIgnoreCase("[properties]"))
@@ -118,6 +120,37 @@ public class TileMapLoader {
             else if (property.length > 1)
                 activeLayer.getProperties().add(property[0], Integer.parseInt(property[1]));
         }
+        return i;
+    }
+
+    private void parseMapObjects(TileMap map, String[] file) {
+        boolean foundTag = false;
+        for (int i = 0; i < file.length; i++) {
+            if (file[i].equalsIgnoreCase("[objects]"))
+                foundTag = true;
+            else if (file[i].equalsIgnoreCase("[/objects]"))
+                break;
+            else if (foundTag) {
+                // Check type
+                if (file[i].equalsIgnoreCase("[rect]"))
+                    i = parseRect(++i, file, map);
+
+            }
+        }
+    }
+
+    private int parseRect(int i, String[] file, TileMap map) {
+        String[] properties = file[i].split(" ");
+        if (properties.length < 5)
+            return i; // Todo add error handling system
+        String type = properties[0];
+        // Convert to the libgdx coordinate system
+        int w = Integer.parseInt(properties[3]);
+        int h = Integer.parseInt(properties[4]);
+        int x = Integer.parseInt(properties[1]);
+        int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]) + map.getTileHeight();
+
+        map.getLevelObjects().add(new RectLevelObject(type, x, y, w, h));
         return i;
     }
 }

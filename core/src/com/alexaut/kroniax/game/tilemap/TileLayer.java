@@ -29,7 +29,7 @@ public class TileLayer {
     }
 
     public TextureRegion getTile(int x, int y) {
-        if(x >= 0 && x < mColumns.size())
+        if (x >= 0 && x < mColumns.size())
             return mColumns.get(x).getTile(y);
         return null;
     }
