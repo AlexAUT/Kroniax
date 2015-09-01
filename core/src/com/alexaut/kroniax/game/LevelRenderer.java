@@ -25,7 +25,7 @@ public class LevelRenderer {
         if (min < 0)
             min = 0;
 
-        int max = (int) (min + (camera.getOrthoCamera().viewportWidth / mMap.getTileWidth())) + 1;
+        int max = (int) (min + (camera.getOrthoCamera().viewportWidth / mMap.getTileWidth())) + 3;
         if (max >= mMap.getWidth())
             max = mMap.getWidth() - 1;
 
@@ -36,7 +36,7 @@ public class LevelRenderer {
                 TileColumn col = layer.getColumns().get(x);
                 ArrayList<TextureRegion> tiles = col.getTiles();
                 for (int i = 0; i < tiles.size(); i++) {
-                    int row = (height - col.getStartRow() - i) * mMap.getTileHeight();
+                    int row = (height - col.getStartRow() - i - 1) * mMap.getTileHeight();
                     TextureRegion tile = col.getTile(col.getStartRow() + i);
                     if (tile != null)
                         spriteRenderer.draw(tile, x * mMap.getTileWidth(), row);
