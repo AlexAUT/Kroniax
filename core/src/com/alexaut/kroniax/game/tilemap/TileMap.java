@@ -3,7 +3,7 @@ package com.alexaut.kroniax.game.tilemap;
 import java.util.ArrayList;
 
 import com.alexaut.kroniax.game.LevelObject;
-import com.alexaut.kroniax.game.Script;
+import com.alexaut.kroniax.game.scripts.Script;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TileMap {

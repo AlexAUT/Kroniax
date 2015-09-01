@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-public class LevelObject {
+public abstract class LevelObject {
     private String mType;
 
     private final Color mColor;
@@ -15,13 +15,9 @@ public class LevelObject {
     }
 
     // Override these
-    public boolean checkCollision(Vector2 p1, Vector2 p2) {
-        return false;
-    }
+    public abstract boolean checkCollision(Vector2 p1, Vector2 p2);
 
-    public void render(ShapeRenderer renderer) {
-
-    }
+    public abstract void render(ShapeRenderer renderer);
 
     public String getType() {
         return mType;

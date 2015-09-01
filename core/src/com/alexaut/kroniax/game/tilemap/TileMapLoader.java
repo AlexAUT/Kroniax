@@ -1,8 +1,12 @@
 package com.alexaut.kroniax.game.tilemap;
 
-import com.alexaut.kroniax.game.Script;
+import java.util.HashMap;
+
 import com.alexaut.kroniax.game.gameobjects.RectLevelObject;
 import com.alexaut.kroniax.game.scripts.FinishScript;
+import com.alexaut.kroniax.game.scripts.GravityChangeScript;
+import com.alexaut.kroniax.game.scripts.Script;
+import com.alexaut.kroniax.game.scripts.SpeedChangeScript;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -152,16 +156,45 @@ public class TileMapLoader {
         int x = Integer.parseInt(properties[1]);
         int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]);
 
+        // Get properties
+        HashMap<String, Float> properties_map = new HashMap<String, Float>();
+        for (i = i + 1; i < file.length; i++) {
+            if (file[i].equalsIgnoreCase("[/rect]"))
+                break;
+            if (file[i].equalsIgnoreCase("[properties]"))
+                i = parseProperties(++i, file, properties_map);
+        }
+        System.out.println(type);
         // Create the script for the map object
         Script script = null;
         if (type.equalsIgnoreCase("finish")) {
             script = new FinishScript();
+        } else if (type.equalsIgnoreCase("speed_change")) {
+            if (properties_map.size() > 1)
+                script = new SpeedChangeScript(properties_map.get("time"), properties_map.get("value"));
+        } else if (type.equalsIgnoreCase("gravity_change")) {
+            if (properties_map.size() > 1)
+                script = new GravityChangeScript(properties_map.get("time"), properties_map.get("value"));
         }
+
         map.getScripts().add(script);
         map.getLevelObjects().add(new RectLevelObject(type, x, y, w, h));
         // They both have the same index (the script can also be null)
         // So they are linked by indices
 
+        return i;
+    }
+
+    private int parseProperties(int i, String[] file, HashMap<String, Float> properties) {
+        for (; i < file.length; i++) {
+            if (file[i].equalsIgnoreCase("[/properties]"))
+                break;
+            String[] values = file[i].split(" ");
+            if (values.length == 1)
+                properties.put(values[0], 0.f);
+            else if (values.length == 2)
+                properties.put(values[0], Float.parseFloat(values[1]));
+        }
         return i;
     }
 }

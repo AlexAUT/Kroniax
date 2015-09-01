@@ -65,14 +65,14 @@
  <objectgroup name="Object Layer 1">
   <object id="3" type="speed_change" x="1618" y="15" width="15" height="687">
    <properties>
-    <property name="time" value="1"/>
-    <property name="value" value="100"/>
+    <property name="time" value="1.5"/>
+    <property name="value" value="200"/>
    </properties>
   </object>
   <object id="4" type="gravity_change" x="2670" y="15" width="15" height="690">
    <properties>
     <property name="time" value="1"/>
-    <property name="value" value="100"/>
+    <property name="value" value="50"/>
    </properties>
   </object>
   <object id="5" type="finish" x="3990" y="15" width="15" height="690"/>

@@ -29,6 +29,9 @@ public class RectLevelObject extends LevelObject {
         if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mHalfX, mYPos, mHalfX, mYPos + mHeight, null)) {
             return true;
         }
+        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos, mHalfY, mXPos + mWidth, mHalfY, null)) {
+            return true;
+        }
         return false;
     }
 

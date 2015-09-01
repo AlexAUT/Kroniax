@@ -123,6 +123,14 @@ public class Player {
         mAlive = alive;
     }
 
+    public void changeVelocity(float addition) {
+        mVelocity += addition;
+    }
+
+    public void changeGravity(float addition) {
+        mGravity += addition;
+    }
+
     public boolean isAlive() {
         return mAlive;
     }

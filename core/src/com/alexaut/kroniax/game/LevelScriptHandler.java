@@ -2,6 +2,7 @@ package com.alexaut.kroniax.game;
 
 import java.util.ArrayList;
 
+import com.alexaut.kroniax.game.scripts.Script;
 import com.badlogic.gdx.math.Vector2;
 
 public class LevelScriptHandler {
@@ -18,10 +19,10 @@ public class LevelScriptHandler {
         Vector2 newPos = player.getCollisionPoints()[0];
 
         for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i).checkCollision(oldPos, newPos)) {
-                if (mScripts.get(i) != null)
+            if (mScripts.get(i) != null && !mScripts.get(i).alreadyStarted()) {
+                if (objects.get(i).checkCollision(oldPos, newPos)) {
                     mScripts.get(i).start();
-                System.out.println("Started script");
+                }
             }
         }
     }
