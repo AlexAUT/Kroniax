@@ -17,6 +17,9 @@ public class Player {
 
     private float[] mPoints;
     private Vector2 mCollisionPoints[];
+    private Vector2 mOldPosOfRightPoint;
+
+    boolean mAlive;
 
     public Player(LevelProperties props) {
 
@@ -31,6 +34,13 @@ public class Player {
         mCollisionPoints[0] = new Vector2();
         mCollisionPoints[1] = new Vector2();
         mCollisionPoints[2] = new Vector2();
+        mOldPosOfRightPoint = new Vector2();
+
+        mAlive = true;
+
+        updatePoints();
+
+        mOldPosOfRightPoint.set(mCollisionPoints[0]);
     }
 
     public void update(float deltaTime) {
@@ -87,6 +97,7 @@ public class Player {
         mPoints[7] = pos_y - (halfXSize * sin / 2.f);
 
         // Update Collision points
+        mOldPosOfRightPoint.set(mCollisionPoints[0]);
         mCollisionPoints[0].set(mPoints[0], mPoints[1]);
         mCollisionPoints[1].set(mPoints[2], mPoints[3]);
         mCollisionPoints[2].set(mPoints[4], mPoints[5]);
@@ -102,6 +113,18 @@ public class Player {
 
     public Vector2[] getCollisionPoints() {
         return mCollisionPoints;
+    }
+
+    public Vector2 getOldRightPosition() {
+        return mOldPosOfRightPoint;
+    }
+
+    public void setAlive(boolean alive) {
+        mAlive = alive;
+    }
+
+    public boolean isAlive() {
+        return mAlive;
     }
 
 }

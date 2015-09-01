@@ -11,6 +11,7 @@ public class Level {
     LevelProperties mProperties;
     LevelCollisionHandler mCollisionHandler;
     final LevelRenderer mRenderer;
+    LevelScriptHandler mScriptHandler;
 
     public Level(TileMap map) throws Exception {
         // Load map
@@ -21,14 +22,19 @@ public class Level {
         mCollisionHandler = new LevelCollisionHandler(map, mProperties);
         // Setup the renderer
         mRenderer = new LevelRenderer(map);
+        // Setup the script handler
+        mScriptHandler = new LevelScriptHandler(map.getScripts());
     }
 
-    public void update(float deltaTime) {
-
+    public void update(float deltaTime, Player player, Camera camera) {
+        // Check collision with map objects
+        mScriptHandler.checkTriggers(mMap.getLevelObjects(), player);
+        // Update running scripts
+        mScriptHandler.update(deltaTime, this, player, camera);
     }
 
-    public boolean checkCollision(Player player) {
-        return mCollisionHandler.collide(player);
+    public void checkCollision(Player player) {
+        mCollisionHandler.collide(player);
     }
 
     public void render(SpriteBatch spriteRenderer, ShapeRenderer shapeRenderer, Camera camera) {

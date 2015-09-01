@@ -66,12 +66,14 @@ public class GameScene implements Screen {
         if (!mStarted) {
             deltaTime = 0;
         }
-        mLevel.update(deltaTime);
+        mLevel.update(deltaTime, mPlayer, mCamera);
         mPlayer.update(deltaTime);
         mCamera.update(mPlayer.getPosition(), mLevel.getProperties().fixedCamera);
 
         // Check collision
-        if (mLevel.checkCollision(mPlayer))
+        mLevel.checkCollision(mPlayer);
+        // Now check if the player collided
+        if (!mPlayer.isAlive())
             goBackToMenu();
 
         if (Gdx.input.isKeyPressed(Input.Keys.F1))

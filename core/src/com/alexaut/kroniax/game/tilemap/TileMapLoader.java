@@ -1,6 +1,8 @@
 package com.alexaut.kroniax.game.tilemap;
 
+import com.alexaut.kroniax.game.Script;
 import com.alexaut.kroniax.game.gameobjects.RectLevelObject;
+import com.alexaut.kroniax.game.scripts.FinishScript;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -150,7 +152,16 @@ public class TileMapLoader {
         int x = Integer.parseInt(properties[1]);
         int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]);
 
+        // Create the script for the map object
+        Script script = null;
+        if (type.equalsIgnoreCase("finish")) {
+            script = new FinishScript();
+        }
+        map.getScripts().add(script);
         map.getLevelObjects().add(new RectLevelObject(type, x, y, w, h));
+        // They both have the same index (the script can also be null)
+        // So they are linked by indices
+
         return i;
     }
 }

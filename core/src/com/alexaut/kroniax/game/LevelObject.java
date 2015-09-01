@@ -2,6 +2,7 @@ package com.alexaut.kroniax.game;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 
 public class LevelObject {
     private String mType;
@@ -14,7 +15,7 @@ public class LevelObject {
     }
 
     // Override these
-    public boolean checkCollision(int x, int y) {
+    public boolean checkCollision(Vector2 p1, Vector2 p2) {
         return false;
     }
 

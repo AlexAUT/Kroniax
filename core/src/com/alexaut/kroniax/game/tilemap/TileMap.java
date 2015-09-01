@@ -38,11 +38,11 @@ public class TileMap {
     public ArrayList<LevelObject> getLevelObjects() {
         return mLevelObjects;
     }
-    
+
     public ArrayList<Script> getScripts() {
         return mScripts;
     }
-    
+
     public TextureRegion getTileRegion(int id) {
         if (id == 0)
             return null;
