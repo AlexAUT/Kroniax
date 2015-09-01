@@ -14,9 +14,15 @@ public class Camera {
         mCameraOffset = new Vector2(300, 0);
     }
 
-    public void update(Vector2 mPlayerPosition) {
+    public void update(Vector2 mPlayerPosition, boolean fixedCamera) {
         mCamera.position.x = Math.round(mPlayerPosition.x + mCameraOffset.x);
-        mCamera.position.y = Math.round(mPlayerPosition.y + mCameraOffset.y);
+        //If it's a fixed camera always be at 360 (middle of the screen)
+
+        if(!fixedCamera)
+            mCamera.position.y = Math.round(mPlayerPosition.y + mCameraOffset.y);
+        else
+            mCamera.position.y = 360.f;
+        
         mCamera.update();
     }
 

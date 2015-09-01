@@ -148,7 +148,7 @@ public class TileMapLoader {
         int w = Integer.parseInt(properties[3]);
         int h = Integer.parseInt(properties[4]);
         int x = Integer.parseInt(properties[1]);
-        int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]) + map.getTileHeight();
+        int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]);
 
         map.getLevelObjects().add(new RectLevelObject(type, x, y, w, h));
         return i;
