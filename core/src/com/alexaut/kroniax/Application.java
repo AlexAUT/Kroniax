@@ -2,6 +2,7 @@ package com.alexaut.kroniax;
 
 import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -9,7 +10,7 @@ public class Application extends Game {
 
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
-
+   
     private MenuScene mMenuScene;
 
     @Override
@@ -17,7 +18,7 @@ public class Application extends Game {
 
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
-
+        
         mMenuScene = new MenuScene(this);
 
         setScreen(mMenuScene);

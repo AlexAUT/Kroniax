@@ -4,19 +4,26 @@ import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.menu.Gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 public class MenuScene implements Screen {
 
+    private Application mApp;
     private Gui mGui;
-
+    
+    private Music mMusic;
+    
     public MenuScene(Application app) {
-
+        mApp = app;
         mGui = new Gui(app);
     }
 
     @Override
     public void show() {
+        mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/PowerFight-ElectroTechnoBeat.ogg"));
+        mMusic.play();
+        
         mGui.show();
         mGui.fadeActiveIn();
     }
@@ -52,11 +59,13 @@ public class MenuScene implements Screen {
     @Override
     public void hide() {
         mGui.hide();
+        mMusic.stop();
     }
 
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
         mGui.dispose();
+        mMusic.dispose();
     }
 }
