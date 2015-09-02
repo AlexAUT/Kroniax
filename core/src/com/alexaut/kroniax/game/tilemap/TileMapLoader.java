@@ -99,14 +99,13 @@ public class TileMapLoader {
             if (file[i].equalsIgnoreCase("[/data]"))
                 break;
             String[] colValues = file[i].split(" ");
-            if (colValues.length > 1) {
+            if (colValues.length >= 1) {
                 TileLayer layer = map.getTileLayers().get(map.getTileLayers().size() - 1);
                 int startValue = Integer.parseInt(colValues[0]);
                 layer.addColumn(startValue);
 
-                int size = Integer.parseInt(colValues[1]);
-                for (int j = 0; j < size; j++) {
-                    int id = Integer.parseInt(colValues[2 + j]);
+                for (int j = 1; j < colValues.length; j++) {
+                    int id = Integer.parseInt(colValues[j]);
                     layer.addTile(map.getTileRegion(id));
                 }
             }
