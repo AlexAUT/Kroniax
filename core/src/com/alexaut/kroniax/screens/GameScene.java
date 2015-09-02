@@ -9,6 +9,7 @@ import com.alexaut.kroniax.game.tilemap.TileMapLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -26,6 +27,8 @@ public class GameScene implements Screen {
     boolean mStarted = false;
 
     TileMap mMap;
+    
+    Music mMusic;
 
     public GameScene(Application app, String lvlPath) {
         mApp = app;
@@ -50,7 +53,10 @@ public class GameScene implements Screen {
             // Level not compatible
             goBackToMenu();
         }
-
+        
+        mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
+        mMusic.setVolume(0.5f);
+        mMusic.play();
     }
 
     @Override
@@ -120,23 +126,25 @@ public class GameScene implements Screen {
     @Override
     public void pause() {
         // TODO Auto-generated method stub
-
+        mMusic.pause();
     }
 
     @Override
     public void resume() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
+        mMusic.play();
     }
 
     @Override
     public void hide() {
         // TODO Auto-generated method stub
-
+        mMusic.stop();
     }
 
     @Override
     public void dispose() {
         mLevel.dispose();
+        mMusic.dispose();
     }
 
     public void goBackToMenu() {
