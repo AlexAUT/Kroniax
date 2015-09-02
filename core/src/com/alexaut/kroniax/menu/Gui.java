@@ -19,6 +19,7 @@ public class Gui {
     private Layer mActiveLayer = Layer.MAIN;
 
     private Stage mStage;
+    
     private Skin mSkin;
 
     private MainLayer mMainLayer;
@@ -30,7 +31,7 @@ public class Gui {
 
         mStage = new Stage(new StretchViewport(1280, 720));
 
-        mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));
+        mSkin = app.getGuiSkin();
 
         mMainLayer = new MainLayer(this);
         mStage.addActor(mMainLayer);

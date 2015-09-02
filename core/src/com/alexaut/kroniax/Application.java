@@ -2,13 +2,17 @@ package com.alexaut.kroniax;
 
 import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Application extends Game {
 
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
+    
+    private Skin mSkin;
 
     private MenuScene mMenuScene;
 
@@ -17,7 +21,8 @@ public class Application extends Game {
 
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
-
+        mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));
+        
         mMenuScene = new MenuScene(this);
 
         setScreen(mMenuScene);
@@ -62,6 +67,10 @@ public class Application extends Game {
 
     public ShapeRenderer getShapeRenderer() {
         return mShapeRenderer;
+    }
+    
+    public Skin getGuiSkin() {
+        return mSkin;
     }
 
     public MenuScene getMenuScene() {
