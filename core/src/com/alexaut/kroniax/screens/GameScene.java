@@ -27,7 +27,7 @@ public class GameScene implements Screen {
     boolean mStarted = false;
 
     TileMap mMap;
-    
+
     Music mMusic;
 
     public GameScene(Application app, String lvlPath) {
@@ -53,8 +53,9 @@ public class GameScene implements Screen {
             // Level not compatible
             goBackToMenu();
         }
-        
-        mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
+
+        mMusic = Gdx.audio
+                .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
         mMusic.setVolume(0.5f);
         mMusic.play();
     }

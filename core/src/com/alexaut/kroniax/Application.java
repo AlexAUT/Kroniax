@@ -10,7 +10,7 @@ public class Application extends Game {
 
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
-   
+
     private MenuScene mMenuScene;
 
     @Override
@@ -18,7 +18,7 @@ public class Application extends Game {
 
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
-        
+
         mMenuScene = new MenuScene(this);
 
         setScreen(mMenuScene);

@@ -51,7 +51,7 @@ public class TileLayer {
     }
 
     public TileColumn getColumn(int x) {
-        if(x >= 0 && x < mColumns.size())
+        if (x >= 0 && x < mColumns.size())
             return mColumns.get(x);
         return null;
     }

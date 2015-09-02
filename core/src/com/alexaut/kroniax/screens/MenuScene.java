@@ -11,9 +11,9 @@ public class MenuScene implements Screen {
 
     private Application mApp;
     private Gui mGui;
-    
+
     private Music mMusic;
-    
+
     public MenuScene(Application app) {
         mApp = app;
         mGui = new Gui(app);
@@ -23,7 +23,7 @@ public class MenuScene implements Screen {
     public void show() {
         mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/PowerFight-ElectroTechnoBeat.ogg"));
         mMusic.play();
-        
+
         mGui.show();
         mGui.fadeActiveIn();
     }
