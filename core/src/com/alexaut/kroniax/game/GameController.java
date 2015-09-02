@@ -1,7 +1,17 @@
 package com.alexaut.kroniax.game;
 
+import com.alexaut.kroniax.Application;
+import com.alexaut.kroniax.game.gamecontrollerscenes.StartScene;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class GameController extends InputAdapter {
@@ -10,13 +20,23 @@ public class GameController extends InputAdapter {
     }
 
     private State mState;
+
+    private Matrix4 mIdentityMatrix;
     
     private Stage mStage;
+    
+    private StartScene mStartScene;
 
-    public GameController() {
+    public GameController(Application app) {
         mState = State.AT_START;
         
+        mIdentityMatrix = new Matrix4();
+        
         mStage = new Stage(new StretchViewport(1280, 720));
+        
+        mStartScene = new StartScene(app);
+        
+        mStage.addActor(mStartScene);
     }
 
     public boolean isRunning() {
@@ -39,21 +59,45 @@ public class GameController extends InputAdapter {
         mStage.act(deltaTime);
     }
     
-    public void render() {
+    public void render(ShapeRenderer shapeRenderer) {
+        if(mState != State.RUNNING) {
+            //Draw grey overlay
+            shapeRenderer.setProjectionMatrix(mIdentityMatrix);
+            shapeRenderer.begin(ShapeType.Filled);
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+            shapeRenderer.setColor(0.1f, 0.1f, 0.1f, 0.9f);
+            shapeRenderer.rect(-1, -1, 2, 2);
+            shapeRenderer.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
+        }
         mStage.draw();
     }
     
     @Override
     public boolean touchUp (int x, int y, int pointer, int button) {
-        if(mState == State.AT_START)
-            mState = State.RUNNING;
-        System.out.println("Here");
-        return false;
+        return inputSignal();
     }
     
     @Override
     public boolean keyUp (int keycode) {
-        System.out.println("KEY");
+        if(keycode == Input.Keys.SPACE)
+            return inputSignal();
         return false;
      }
+    
+    private boolean inputSignal() {
+        if(mState == State.AT_START) {
+            mStartScene.addAction(Actions.fadeOut(0.25f));
+            Timer.schedule(new Timer.Task() {
+                
+                @Override
+                public void run() {
+                    mState = State.RUNNING;
+                }
+            }, 0.25f);
+        }
+            
+        return true;
+    }
 }

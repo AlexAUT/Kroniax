@@ -20,9 +20,16 @@ public class CreditsLayer extends Table {
         add(label);
         row().padTop(40.f);
         
-        label = new Label("Special thanks to the creator of LibGDX!", gui.getSkin());
+        label = new Label("Special thanks to the creator of LibGDX", gui.getSkin());
         add(label);
-
+        row();
+        label = new Label("Mario Zechner!", gui.getSkin());
+        add(label);
+        
+        row().padTop(40.f);
+        label = new Label("Music created by MafiaFlairBeats", gui.getSkin());
+        add(label);
+        
         row().padTop(100.f);
         // Back button, add credits above!
         TextButton bt = new TextButton("Back", gui.getSkin());

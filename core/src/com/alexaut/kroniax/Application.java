@@ -17,8 +17,7 @@ public class Application extends Game {
     private MenuScene mMenuScene;
 
     @Override
-    public void create() {
-
+    public void create() {        
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
         mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));

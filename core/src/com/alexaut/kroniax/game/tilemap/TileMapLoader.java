@@ -180,7 +180,6 @@ public class TileMapLoader {
             if (file[i].equalsIgnoreCase("[properties]"))
                 i = parseProperties(++i, file, properties_map);
         }
-        System.out.println(type);
         // Create the script for the map object
         Script script = null;
         if (type.equalsIgnoreCase("finish")) {

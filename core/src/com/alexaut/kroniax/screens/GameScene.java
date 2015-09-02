@@ -36,7 +36,7 @@ public class GameScene implements Screen {
     public GameScene(Application app, String lvlPath) {
         mApp = app;
         
-        mGameController = new GameController();
+        mGameController = new GameController(app);
         Gdx.input.setInputProcessor(mGameController);
         
         mCamera = new Camera();
@@ -121,6 +121,8 @@ public class GameScene implements Screen {
         shapeRenderer.setProjectionMatrix(mCamera.getTransform());
         mPlayer.render(shapeRenderer);
         shapeRenderer.end();
+        
+        mGameController.render(shapeRenderer);
     }
 
     @Override
