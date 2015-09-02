@@ -2,6 +2,7 @@ package com.alexaut.kroniax.screens;
 
 import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Level;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.tilemap.TileMap;
@@ -18,7 +19,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class GameScene implements Screen {
 
     final Application mApp;
-
+    
+    GameController mGameController;
+    
     Camera mCamera;
 
     Level mLevel;
@@ -32,7 +35,9 @@ public class GameScene implements Screen {
 
     public GameScene(Application app, String lvlPath) {
         mApp = app;
-
+        
+        mGameController = new GameController();
+        
         mCamera = new Camera();
 
         try {
@@ -94,7 +99,8 @@ public class GameScene implements Screen {
     @Override
     public void render(float delta) {
         // Call update first
-        update(Gdx.graphics.getDeltaTime());
+        if(mGameController.isRunning())
+            update(Gdx.graphics.getDeltaTime());
 
         // Clear screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
