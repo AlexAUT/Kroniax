@@ -18,6 +18,10 @@ public class CreditsLayer extends Table {
 
         Label label = new Label("Programmed by Alexander Weinrauch", gui.getSkin());
         add(label);
+        row().padTop(40.f);
+        
+        label = new Label("Special thanks to the creator of LibGDX!", gui.getSkin());
+        add(label);
 
         row().padTop(100.f);
         // Back button, add credits above!
