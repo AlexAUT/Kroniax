@@ -2,7 +2,6 @@ package com.alexaut.kroniax;
 
 import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 

@@ -9,13 +9,11 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class MenuScene implements Screen {
 
-    private Application mApp;
     private Gui mGui;
 
     private Music mMusic;
 
     public MenuScene(Application app) {
-        mApp = app;
         mGui = new Gui(app);
     }
 
