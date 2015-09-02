@@ -37,6 +37,7 @@ public class GameScene implements Screen {
         mApp = app;
         
         mGameController = new GameController();
+        Gdx.input.setInputProcessor(mGameController);
         
         mCamera = new Camera();
 
@@ -71,36 +72,34 @@ public class GameScene implements Screen {
     }
 
     public void update(float deltaTime) {
+        mGameController.update(deltaTime);
+        
+        if(mGameController.isRunning()) {
+            mLevel.update(deltaTime, mPlayer, mCamera);
+            mPlayer.update(deltaTime);
+            
 
-        if (Gdx.input.isTouched())
-            mStarted = true;
+            // Check collision
+            mLevel.checkCollision(mPlayer);
+            // Now check if the player collided
+            if (!mPlayer.isAlive())
+                goBackToMenu();
 
-        if (!mStarted) {
-            deltaTime = 0;
+            if (Gdx.input.isKeyPressed(Input.Keys.F1))
+                System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+                goBackToMenu();
+
         }
-        mLevel.update(deltaTime, mPlayer, mCamera);
-        mPlayer.update(deltaTime);
+        //Always update camera
         mCamera.update(mPlayer.getPosition(), mLevel.getProperties().fixedCamera);
-
-        // Check collision
-        mLevel.checkCollision(mPlayer);
-        // Now check if the player collided
-        if (!mPlayer.isAlive())
-            goBackToMenu();
-
-        if (Gdx.input.isKeyPressed(Input.Keys.F1))
-            System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-            goBackToMenu();
-
     }
 
     @Override
     public void render(float delta) {
         // Call update first
-        if(mGameController.isRunning())
-            update(Gdx.graphics.getDeltaTime());
+        update(Gdx.graphics.getDeltaTime());
 
         // Clear screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
