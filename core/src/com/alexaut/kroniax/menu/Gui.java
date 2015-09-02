@@ -98,7 +98,7 @@ public class Gui {
     }
 
     public void hide() {
-        Gdx.input.setInputProcessor(null);
+        
     }
 
     public void show() {
