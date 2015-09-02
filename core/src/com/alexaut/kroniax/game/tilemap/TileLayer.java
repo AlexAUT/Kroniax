@@ -49,4 +49,10 @@ public class TileLayer {
     public ArrayList<TileColumn> getColumns() {
         return mColumns;
     }
+
+    public TileColumn getColumn(int x) {
+        if(x >= 0 && x < mColumns.size())
+            return mColumns.get(x);
+        return null;
+    }
 }

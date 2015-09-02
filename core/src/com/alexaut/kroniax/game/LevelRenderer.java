@@ -33,13 +33,15 @@ public class LevelRenderer {
         int height = mMap.getHeight();
         for (TileLayer layer : mMap.getTileLayers()) {
             for (int x = min; x <= max; x++) {
-                TileColumn col = layer.getColumns().get(x);
-                ArrayList<TextureRegion> tiles = col.getTiles();
-                for (int i = 0; i < tiles.size(); i++) {
-                    int row = (height - col.getStartRow() - i - 1) * mMap.getTileHeight();
-                    TextureRegion tile = col.getTile(col.getStartRow() + i);
-                    if (tile != null)
-                        spriteRenderer.draw(tile, x * mMap.getTileWidth(), row);
+                TileColumn col = layer.getColumn(x);
+                if (col != null) {
+                    ArrayList<TextureRegion> tiles = col.getTiles();
+                    for (int i = 0; i < tiles.size(); i++) {
+                        int row = (height - col.getStartRow() - i - 1) * mMap.getTileHeight();
+                        TextureRegion tile = col.getTile(col.getStartRow() + i);
+                        if (tile != null)
+                            spriteRenderer.draw(tile, x * mMap.getTileWidth(), row);
+                    }
                 }
             }
         }

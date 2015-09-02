@@ -99,14 +99,31 @@ public class TileMapLoader {
             if (file[i].equalsIgnoreCase("[/data]"))
                 break;
             String[] colValues = file[i].split(" ");
-            if (colValues.length >= 1) {
+            if (colValues.length >= 2) {
                 TileLayer layer = map.getTileLayers().get(map.getTileLayers().size() - 1);
-                int startValue = Integer.parseInt(colValues[0]);
-                layer.addColumn(startValue);
+                // check if the lines describes a few empty lines
+                if (colValues[0].equalsIgnoreCase("x")) {
+                    int count = Integer.parseInt(colValues[1]);
+                    for (int j = 0; j < count; j++)
+                        layer.addColumn(0);
+                } else {
+                    // Normal row
+                    int startValue = Integer.parseInt(colValues[0]);
+                    layer.addColumn(startValue);
 
-                for (int j = 1; j < colValues.length; j++) {
-                    int id = Integer.parseInt(colValues[j]);
-                    layer.addTile(map.getTileRegion(id));
+                    for (int j = 1; j < colValues.length; j++) {
+                        // Check if the tile describes placeholder for empty
+                        // tiles
+                        if (colValues[j].equalsIgnoreCase("x")) {
+                            int count = Integer.parseInt(colValues[++j]);
+                            for (int k = 0; k < count; k++)
+                                layer.addTile(null);
+                        } else { // Normal tile
+                            int id = Integer.parseInt(colValues[j]);
+                            layer.addTile(map.getTileRegion(id));
+                        }
+
+                    }
                 }
             }
         }
