@@ -37,5 +37,6 @@ public abstract class Script {
         return mStarted;
     }
 
-    public abstract void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera);
+    public abstract void update(float deltaTime, GameController gameController, Level level, Player player,
+            Camera camera);
 }

@@ -22,7 +22,7 @@ public class CheckPointScript extends Script {
         float y = (level.getProperties().tileCount.y - mStartY) * level.getProperties().tileSize.y;
         player.addCheckPoint(x, y, mStartAngle);
 
-        // Signals that the event shouldnt get triggered again
+        // Signals that the event shouldn't get triggered again
         stop();
     }
 }

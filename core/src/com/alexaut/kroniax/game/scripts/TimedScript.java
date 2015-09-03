@@ -37,5 +37,6 @@ public abstract class TimedScript extends Script {
         mElapsedTime = 0;
     }
 
-    protected abstract void updateWithInterp(float interp, GameController gameController, Level level, Player player, Camera camera);
+    protected abstract void updateWithInterp(float interp, GameController gameController, Level level, Player player,
+            Camera camera);
 }

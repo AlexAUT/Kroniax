@@ -15,7 +15,7 @@ public class FinishScript extends Script {
     public void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera) {
         gameController.setState(State.FINISHED);
 
-        // Signals that the event shouldnt get triggered again
+        // Signals that the event shouldn't get triggered again
         stop();
     }
 

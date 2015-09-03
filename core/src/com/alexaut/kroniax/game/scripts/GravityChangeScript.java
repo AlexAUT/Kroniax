@@ -14,7 +14,8 @@ public class GravityChangeScript extends TimedScript {
     }
 
     @Override
-    protected void updateWithInterp(float interp, GameController gameController, Level level, Player player, Camera camera) {
+    protected void updateWithInterp(float interp, GameController gameController, Level level, Player player,
+            Camera camera) {
         player.changeGravity(mValue * interp);
     }
 }
