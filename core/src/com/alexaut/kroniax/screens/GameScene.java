@@ -36,7 +36,7 @@ public class GameScene implements Screen {
 
     Music mMusic;
 
-    public GameScene(Application app, int lvlNumber) {
+    public GameScene(Application app, int lvlNumber, Music music) {
         mApp = app;
         mLvlNumber = lvlNumber;
 
@@ -63,11 +63,15 @@ public class GameScene implements Screen {
             // Level not compatible
             goBackToMenu();
         }
+        
+        mMusic = music;
+        if(mMusic == null) {
+            mMusic = Gdx.audio
+                    .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
+            mMusic.setVolume(0.5f);
+            mMusic.play();
+        }
 
-        mMusic = Gdx.audio
-                .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
-        mMusic.setVolume(0.5f);
-        mMusic.play();
     }
 
     @Override
@@ -102,6 +106,14 @@ public class GameScene implements Screen {
             mPlayer.resetToCheckPoint();
             System.out.println("Resettet!");
             mGameController.setState(State.AT_START);
+        }
+        
+        // Check if we need to load the next level
+        if(mGameController.getState() == State.LOAD_NEXT_LEVEL) {
+            Music cacheMusic = mMusic;
+            mMusic = null;
+            dispose();
+            mApp.setScreen(new GameScene(mApp, mLvlNumber + 1, cacheMusic));
         }
 
     }
@@ -156,13 +168,15 @@ public class GameScene implements Screen {
     @Override
     public void hide() {
         // TODO Auto-generated method stub
-        mMusic.stop();
+        if(mMusic != null)
+            mMusic.stop();
     }
 
     @Override
     public void dispose() {
         mLevel.dispose();
-        mMusic.dispose();
+        if(mMusic != null)
+            mMusic.dispose();
     }
 
     public void goBackToMenu() {

@@ -53,7 +53,7 @@ public class LevelSelectionLayer extends Table {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     int lvlNumber = Integer.parseInt(actor.getName());
-                    gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlNumber));
+                    gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlNumber, null));
                 }
             });
 
