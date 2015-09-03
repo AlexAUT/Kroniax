@@ -40,7 +40,7 @@ public class LevelSelectionLayer extends Table {
     }
 
     public void setupLevelGrid(final Gui gui) {
-        final int unlocked_levels = 3;
+        final int unlocked_levels = gui.getApplication().getProgressManager().getUnlockedLevels();
         final int rowSize = 3;
 
         for (int i = 1; i <= 9; i++) {
