@@ -20,7 +20,8 @@ public class MenuScene implements Screen {
     @Override
     public void show() {
         mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/PowerFight-ElectroTechnoBeat.ogg"));
-        mMusic.play();
+        //mMusic.play();
+        mMusic.setLooping(true);
 
         mGui.show();
         mGui.fadeActiveIn();

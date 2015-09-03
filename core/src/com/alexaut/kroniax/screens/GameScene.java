@@ -69,7 +69,8 @@ public class GameScene implements Screen {
             mMusic = Gdx.audio
                     .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
             mMusic.setVolume(0.5f);
-            mMusic.play();
+            mMusic.setLooping(true);
+            //mMusic.play();
         }
 
     }
@@ -104,8 +105,8 @@ public class GameScene implements Screen {
         // Check if we have to set the player to the last checkpoint
         if (mGameController.getState() == State.RESET_TO_CHECKPOINT) {
             mPlayer.resetToCheckPoint();
-            System.out.println("Resettet!");
             mGameController.setState(State.AT_START);
+            mLevel.resetScripts();
         }
         
         if (mGameController.getState() == State.FINISHED)

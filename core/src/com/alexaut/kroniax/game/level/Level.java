@@ -39,6 +39,10 @@ public class Level {
     public boolean checkCollision(Player player) {
         return mCollisionHandler.collide(player);
     }
+    
+    public void resetScripts() {
+        mScriptHandler.resetScripts();
+    }
 
     public void render(SpriteBatch spriteRenderer, ShapeRenderer shapeRenderer, Camera camera) {
         mRenderer.render(spriteRenderer, shapeRenderer, camera);
