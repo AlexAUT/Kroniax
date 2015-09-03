@@ -40,10 +40,10 @@ public class LevelSelectionLayer extends Table {
     }
 
     public void setupLevelGrid(final Gui gui) {
-        final int unlocked_levels = 9;
+        final int unlocked_levels = 3;
         final int rowSize = 3;
 
-        for (int i = 1; i <= unlocked_levels; i++) {
+        for (int i = 1; i <= 9; i++) {
             TextButton bt = new TextButton(Integer.toString(i), gui.getSkin());
             bt.setName(Integer.toString(i));
 
@@ -56,6 +56,10 @@ public class LevelSelectionLayer extends Table {
                     gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlPath));
                 }
             });
+            
+            if(i > unlocked_levels) {
+                bt.setVisible(false);
+            }
 
             add(bt).pad(5.f).width(150).height(150);
             if (i != 0 && i % rowSize == 0)
