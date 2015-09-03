@@ -32,7 +32,7 @@ public abstract class TimedScript extends Script {
     
     @Override
     public void reset() {
-        super.reset();();
+        super.reset();
         mElapsedTime = 0;
     }
 

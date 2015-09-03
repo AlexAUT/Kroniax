@@ -3,6 +3,7 @@ package com.alexaut.kroniax.game.tilemap;
 import java.util.HashMap;
 
 import com.alexaut.kroniax.game.gameobjects.RectLevelObject;
+import com.alexaut.kroniax.game.scripts.CheckPointScript;
 import com.alexaut.kroniax.game.scripts.FinishScript;
 import com.alexaut.kroniax.game.scripts.GravityChangeScript;
 import com.alexaut.kroniax.game.scripts.Script;
@@ -184,6 +185,9 @@ public class TileMapLoader {
         Script script = null;
         if (type.equalsIgnoreCase("finish")) {
             script = new FinishScript();
+        } else if (type.equalsIgnoreCase("checkpoint")) {
+            if(properties_map.size() > 1)
+                script = new CheckPointScript(properties_map.get("start_x"), properties_map.get("start_y"), properties_map.get("start_angle"));
         } else if (type.equalsIgnoreCase("speed_change")) {
             if (properties_map.size() > 1)
                 script = new SpeedChangeScript(properties_map.get("time"), properties_map.get("value"));

@@ -21,6 +21,12 @@ public class Player {
     private Vector2 mOldPosOfRightPoint;
 
     boolean mAlive;
+    
+    private Vector2 mCachePosition;
+    private Vector2 mCacheSize;
+    private float mCacheVelocity;
+    private float mCacheAngle;
+    private float mCacheGravity;
 
     public Player(LevelProperties props) {
 
@@ -42,6 +48,13 @@ public class Player {
         updatePoints();
 
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
+        
+        //Cache start values for resetting the player
+        mCachePosition = new Vector2(mPosition);
+        mCacheSize = new Vector2(mSize);
+        mCacheVelocity = mVelocity;
+        mCacheAngle = mAngle;
+        mCacheGravity = mGravity;
     }
 
     public void update(float deltaTime) {
@@ -134,6 +147,29 @@ public class Player {
 
     public boolean isAlive() {
         return mAlive;
+    }
+    
+    public void addCheckPoint(float x, float y, float angle) {
+        mCachePosition.set(x, y);
+        mCacheSize.set(mSize);
+        mCacheVelocity = mVelocity;
+        mCacheAngle = angle;
+        mCacheGravity = mGravity;
+        System.out.println("Added checkpoint");
+    }
+    
+    public void resetToCheckPoint() {
+        mPosition.set(mCachePosition);
+        mSize.set(mCacheSize);
+        mVelocity = mCacheVelocity;
+        mAngle = mCacheAngle;
+        mGravity = mCacheGravity;
+        //Update player model
+        updatePoints();
+        //We need to reset the old position hardcoded, otherwise it would collide infinite
+        mOldPosOfRightPoint.set(mCollisionPoints[0]);
+        //Set the play back again to live
+        setAlive(true);
     }
 
 }

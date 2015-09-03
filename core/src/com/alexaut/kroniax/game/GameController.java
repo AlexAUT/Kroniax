@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class GameController extends InputAdapter {
     public enum State {
-        AT_START, RUNNING, CRASHED, FINISHED, PAUSE, BACK_TO_MENU
+        AT_START, RUNNING, CRASHED, RESET_TO_CHECKPOINT, FINISHED, PAUSE, BACK_TO_MENU
     }
 
     private State mState;
@@ -125,7 +125,7 @@ public class GameController extends InputAdapter {
         if (mState == State.CRASHED) {
             mCrashedScene.addAction(Actions.fadeOut(0.25f));
             mStartScene.addAction(Actions.fadeIn(0.5f));
-            mState = State.AT_START;
+            mState = State.RESET_TO_CHECKPOINT;
         }
 
         return true;
