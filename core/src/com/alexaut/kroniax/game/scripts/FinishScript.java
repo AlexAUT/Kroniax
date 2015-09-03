@@ -12,6 +12,9 @@ public class FinishScript extends Script {
 
     public void update(float deltaTime, Level level, Player player, Camera camera) {
         player.setAlive(false);
+        
+        //Signals that the event shouldnt get triggered again
+        stop();
     }
 
 }
