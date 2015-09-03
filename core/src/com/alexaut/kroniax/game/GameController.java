@@ -32,7 +32,9 @@ public class GameController extends InputAdapter {
     private PauseScene mPauseScene;
     private CrashedScene mCrashedScene;
     private FinishScene mFinishScene;
-
+    
+    private boolean mActionRunning;
+    
     public GameController(Application app) {
         mState = State.AT_START;
 
@@ -49,6 +51,8 @@ public class GameController extends InputAdapter {
         mStage.addActor(mPauseScene);
         mStage.addActor(mCrashedScene);
         mStage.addActor(mFinishScene);
+        
+        mActionRunning = false;
     }
 
     public boolean isRunning() {
@@ -58,8 +62,11 @@ public class GameController extends InputAdapter {
     public void setState(State newState) {
         mState = newState;
 
-        if (newState == State.CRASHED)
+        if (newState == State.CRASHED) {
+            mCrashedScene.clearActions();
             mCrashedScene.addAction(Actions.fadeIn(0.5f));
+            System.out.println("Fade in");
+        }
 
         if (newState == State.FINISHED)
             mFinishScene.addAction(Actions.fadeIn(0.5f));
@@ -107,8 +114,13 @@ public class GameController extends InputAdapter {
     }
 
     private boolean startButton() {
+        //if(mActionRunning)
+           //((// return false;
+        
         if (mState == State.AT_START) {
+            mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
+            mActionRunning = true;
             Timer.schedule(new Timer.Task() {
 
                 @Override
@@ -130,12 +142,15 @@ public class GameController extends InputAdapter {
         }
 
         if (mState == State.CRASHED) {
+            mCrashedScene.clearActions();
             mCrashedScene.addAction(Actions.fadeOut(0.25f));
+            mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeIn(0.5f));
             mState = State.RESET_TO_CHECKPOINT;
         }
 
         if (mState == State.FINISHED) {
+            mFinishScene.clearActions();
             mFinishScene.addAction(Actions.fadeOut(0.5f));
             Timer.schedule(new Timer.Task() {
 
@@ -152,6 +167,7 @@ public class GameController extends InputAdapter {
     private boolean escapeKey() {
         if (mState == State.RUNNING) {
             mState = State.PAUSE;
+            mPauseScene.clearActions();
             mPauseScene.addAction(Actions.fadeIn(0.5f));
         } else {
             mState = State.BACK_TO_MENU;
