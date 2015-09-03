@@ -67,10 +67,10 @@ public class GameScene implements Screen {
         mMusic = music;
         if (mMusic == null) {
             mMusic = Gdx.audio
-                    .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
+                    .newMusic(Gdx.files.internal("data/music/GalaxyNewElectroHouseTechnobyMafiaFLairBeatz.ogg"));
             mMusic.setVolume(0.5f);
             mMusic.setLooping(true);
-            // mMusic.play();
+            mMusic.play();
         }
 
     }
