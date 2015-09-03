@@ -625,6 +625,9 @@ finish 5565 15 15 690
 [rect]
 checkpoint 4035 15 15 690
 [properties]
+start_x 269
+start_angle 0
+start_y 24
 [/properties]
 [/rect]
 [/objects]

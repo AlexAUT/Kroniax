@@ -9,6 +9,11 @@
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="15" tileheight="15" spacing="5" margin="5">
   <image source="../../sprites/background_001.jpg" width="1024" height="1024"/>
+  <tile id="1789">
+   <properties>
+    <property name="start_x" value=""/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Instructions" width="500" height="48">
   <data encoding="csv">
@@ -76,7 +81,13 @@
    </properties>
   </object>
   <object id="5" type="finish" x="5565" y="15" width="15" height="690"/>
-  <object id="7" type="checkpoint" x="4035" y="15" width="15" height="690"/>
+  <object id="7" type="checkpoint" x="4035" y="15" width="15" height="690">
+   <properties>
+    <property name="start_angle" value="0"/>
+    <property name="start_x" value="269"/>
+    <property name="start_y" value="24"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Walls" width="500" height="48">
   <properties>
