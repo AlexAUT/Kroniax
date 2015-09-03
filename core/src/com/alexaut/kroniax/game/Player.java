@@ -16,6 +16,10 @@ public class Player {
     private float mAngle;
     private float mGravity;
 
+    private Vector2 mCircleTimerPosition;
+    private float mTimerPercentage;
+    private Color mTimerColor;
+    
     private float[] mPoints;
     private Vector2 mCollisionPoints[];
     private Vector2 mOldPosOfRightPoint;
@@ -33,6 +37,9 @@ public class Player {
         mSize = new Vector2(50, 35);
         mVelocity = props.velocity;
         mGravity = props.gravity;
+        
+        mCircleTimerPosition = new Vector2();
+        mTimerPercentage = 0.f;
 
         mPoints = new float[8];
         mCollisionPoints = new Vector2[3];
@@ -76,6 +83,9 @@ public class Player {
         renderer.setColor(Color.WHITE);
         renderer.triangle(mPoints[0], mPoints[1], mPoints[2], mPoints[3], mPoints[6], mPoints[7]);
         renderer.triangle(mPoints[0], mPoints[1], mPoints[4], mPoints[5], mPoints[6], mPoints[7]);
+        if(mTimerColor != null)
+            renderer.setColor(mTimerColor);
+        renderer.arc(mCircleTimerPosition.x, mCircleTimerPosition.y, 12, 90, 360.f * mTimerPercentage);
     }
 
     public void updatePoints() {
@@ -111,6 +121,11 @@ public class Player {
         mCollisionPoints[0].set(mPoints[0], mPoints[1]);
         mCollisionPoints[1].set(mPoints[2], mPoints[3]);
         mCollisionPoints[2].set(mPoints[4], mPoints[5]);
+        
+        //Calculate circle position
+        mCircleTimerPosition.set(mPoints[2] - mPoints[4], mPoints[3]- mPoints[5]);
+        mCircleTimerPosition.scl(0.5f);
+        mCircleTimerPosition.add(mPoints[2], mPoints[3]);
     }
 
     public Vector2 getPosition() {
@@ -158,6 +173,14 @@ public class Player {
         // collide infinite
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
         // Set the play back again to live
+    }
+    
+    public void setTimerPercentage(float percentage) {
+        mTimerPercentage = percentage;
+    }
+    
+    public void setTimerColor(Color color) {
+        mTimerColor = color;
     }
 
 }

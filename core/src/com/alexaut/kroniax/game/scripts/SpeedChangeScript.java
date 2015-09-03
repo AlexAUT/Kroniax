@@ -4,6 +4,7 @@ import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.level.Level;
+import com.badlogic.gdx.graphics.Color;
 
 public class SpeedChangeScript extends TimedScript {
 
@@ -18,5 +19,7 @@ public class SpeedChangeScript extends TimedScript {
     protected void updateWithInterp(float interp, GameController gameController, Level level, Player player,
             Camera camera) {
         player.changeVelocity(mValue * interp);
+        player.setTimerPercentage(getElapsedPercentage());
+        player.setTimerColor(Color.CYAN);
     }
 }

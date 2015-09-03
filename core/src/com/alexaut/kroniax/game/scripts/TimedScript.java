@@ -39,4 +39,8 @@ public abstract class TimedScript extends Script {
 
     protected abstract void updateWithInterp(float interp, GameController gameController, Level level, Player player,
             Camera camera);
+    
+    public float getElapsedPercentage() {
+        return (1.f - mElapsedTime / mDuration);
+    }
 }
