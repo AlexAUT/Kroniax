@@ -1,4 +1,4 @@
-package com.alexaut.kroniax.game;
+package com.alexaut.kroniax.game.level;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

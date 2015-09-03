@@ -1,4 +1,4 @@
-package com.alexaut.kroniax.game;
+package com.alexaut.kroniax.game.level;
 
 import com.alexaut.kroniax.game.tilemap.Properties;
 import com.alexaut.kroniax.game.tilemap.TileMap;

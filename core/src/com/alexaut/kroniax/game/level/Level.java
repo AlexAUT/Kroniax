@@ -1,5 +1,7 @@
-package com.alexaut.kroniax.game;
+package com.alexaut.kroniax.game.level;
 
+import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

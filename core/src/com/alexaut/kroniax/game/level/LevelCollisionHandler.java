@@ -1,7 +1,8 @@
-package com.alexaut.kroniax.game;
+package com.alexaut.kroniax.game.level;
 
 import java.util.ArrayList;
 
+import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.tilemap.TileLayer;
 import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.badlogic.gdx.math.Vector2;

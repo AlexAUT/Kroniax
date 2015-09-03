@@ -1,7 +1,8 @@
-package com.alexaut.kroniax.game;
+package com.alexaut.kroniax.game.level;
 
 import java.util.ArrayList;
 
+import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.tilemap.TileColumn;
 import com.alexaut.kroniax.game.tilemap.TileLayer;
 import com.alexaut.kroniax.game.tilemap.TileMap;
