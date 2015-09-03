@@ -83,7 +83,7 @@ public class GameScene implements Screen {
             mLevel.checkCollision(mPlayer);
             // Now check if the player collided
             if (!mPlayer.isAlive())
-                goBackToMenu();
+                mGameController.setState(State.CRASHED);
 
             if (Gdx.input.isKeyPressed(Input.Keys.F1))
                 System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());

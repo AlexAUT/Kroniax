@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game;
 
 import com.alexaut.kroniax.Application;
+import com.alexaut.kroniax.game.gamecontrollerscenes.CrashedScene;
 import com.alexaut.kroniax.game.gamecontrollerscenes.PauseScene;
 import com.alexaut.kroniax.game.gamecontrollerscenes.StartScene;
 import com.badlogic.gdx.Gdx;
@@ -28,6 +29,7 @@ public class GameController extends InputAdapter {
 
     private StartScene mStartScene;
     private PauseScene mPauseScene;
+    private CrashedScene mCrashedScene;
 
     public GameController(Application app) {
         mState = State.AT_START;
@@ -38,9 +40,11 @@ public class GameController extends InputAdapter {
 
         mStartScene = new StartScene(app);
         mPauseScene = new PauseScene(app);
+        mCrashedScene = new CrashedScene(app);
 
         mStage.addActor(mStartScene);
         mStage.addActor(mPauseScene);
+        mStage.addActor(mCrashedScene);
     }
 
     public boolean isRunning() {
@@ -49,6 +53,9 @@ public class GameController extends InputAdapter {
 
     public void setState(State newState) {
         mState = newState;
+        
+        if(newState == State.CRASHED) 
+            mCrashedScene.addAction(Actions.fadeIn(0.5f));
     }
 
     public State getState() {
@@ -113,6 +120,12 @@ public class GameController extends InputAdapter {
                     mState = State.RUNNING;
                 }
             }, 0.25f);
+        }
+        
+        if (mState == State.CRASHED) {
+            mCrashedScene.addAction(Actions.fadeOut(0.25f));
+            mStartScene.addAction(Actions.fadeIn(0.5f));
+            mState = State.AT_START;
         }
 
         return true;
