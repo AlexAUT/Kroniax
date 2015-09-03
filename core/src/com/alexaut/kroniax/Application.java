@@ -1,5 +1,6 @@
 package com.alexaut.kroniax;
 
+import com.alexaut.kroniax.game.ProgressManager;
 import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,7 +14,9 @@ public class Application extends Game {
     private ShapeRenderer mShapeRenderer;
     
     private Skin mSkin;
-
+    
+    private ProgressManager mProgressManager;
+    
     private MenuScene mMenuScene;
 
     @Override
@@ -21,6 +24,7 @@ public class Application extends Game {
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
         mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));
+        mProgressManager = new ProgressManager();
         
         mMenuScene = new MenuScene(this);
 
@@ -70,6 +74,10 @@ public class Application extends Game {
     
     public Skin getGuiSkin() {
         return mSkin;
+    }
+    
+    public ProgressManager getProgressManager() {
+        return mProgressManager;
     }
 
     public MenuScene getMenuScene() {
