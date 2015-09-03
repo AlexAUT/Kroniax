@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.GameController;
-import com.alexaut.kroniax.game.Player;
+import com.alexaut.kroniax.game.player.Player;
 import com.alexaut.kroniax.game.scripts.Script;
 import com.badlogic.gdx.math.Vector2;
 
