@@ -29,6 +29,12 @@ public abstract class TimedScript extends Script {
         if (mElapsedTime >= mDuration)
             stop();
     }
+    
+    @Override
+    public void reset() {
+        super.reset();();
+        mElapsedTime = 0;
+    }
 
     protected abstract void updateWithInterp(float interp, Level level, Player player, Camera camera);
 }
