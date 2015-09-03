@@ -12,20 +12,20 @@ public class Application extends Game {
 
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
-    
+
     private Skin mSkin;
-    
+
     private ProgressManager mProgressManager;
-    
+
     private MenuScene mMenuScene;
 
     @Override
-    public void create() {        
+    public void create() {
         mSpriteBatch = new SpriteBatch();
         mShapeRenderer = new ShapeRenderer();
         mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));
         mProgressManager = new ProgressManager();
-        
+
         mMenuScene = new MenuScene(this);
 
         setScreen(mMenuScene);
@@ -71,11 +71,11 @@ public class Application extends Game {
     public ShapeRenderer getShapeRenderer() {
         return mShapeRenderer;
     }
-    
+
     public Skin getGuiSkin() {
         return mSkin;
     }
-    
+
     public ProgressManager getProgressManager() {
         return mProgressManager;
     }
