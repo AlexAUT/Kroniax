@@ -3,6 +3,7 @@ package com.alexaut.kroniax.game.player;
 import com.alexaut.kroniax.game.level.LevelProperties;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
@@ -14,10 +15,10 @@ public class Player {
     private float mVelocity;
     private float mAngle;
     private float mGravity;
-    
-    private PlayerShip mShip;
 
-    
+    private PlayerShip mShip;
+    private PlayerScriptTimer mScriptTimers;
+
     private Vector2 mCachePosition;
     private Vector2 mCacheSize;
     private float mCacheVelocity;
@@ -31,10 +32,12 @@ public class Player {
         mSize = new Vector2(50, 35);
         mVelocity = props.velocity;
         mGravity = props.gravity;
-        
+
         mShip = new PlayerShip();
         mShip.updatePoints(this);
-        
+
+        mScriptTimers = new PlayerScriptTimer();
+
         // Cache start values for resetting the player
         mCachePosition = new Vector2(mPosition);
         mCacheSize = new Vector2(mSize);
@@ -55,11 +58,14 @@ public class Player {
         mPosition.mulAdd(new Vector2(cos * mVelocity, sin * mVelocity), deltaTime);
 
         mShip.updatePoints(this);
+
+        mScriptTimers.reset();
     }
 
     public void render(ShapeRenderer renderer) {
-        //Render the ship
+        // Render the ship
         mShip.render(renderer);
+        mScriptTimers.render(renderer, this, mShip);
     }
 
     public Vector2[] getCollisionPoints() {
@@ -97,22 +103,26 @@ public class Player {
         // We need to reset the old position hardcoded, otherwise it would
         // collide infinite
         mShip.resetAfterCheckPoint();
+        mScriptTimers.reset();
     }
-    
+
     public float getAngle() {
         return mAngle;
     }
-    
+
     public void setPosition(Vector2 position) {
         mPosition = position;
     }
-    
+
     public Vector2 getPosition() {
         return mPosition;
     }
-    
+
     public Vector2 getSize() {
         return mSize;
     }
 
+    public void updateScriptTimer(float value, Color color) {
+        mScriptTimers.addTimer(value, color);
+    }
 }

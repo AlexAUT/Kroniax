@@ -5,12 +5,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 public class PlayerShip {
-    
+
     private float[] mPoints;
     private Vector2 mCollisionPoints[];
     private Vector2 mOldPosOfRightPoint;
-    
-    
+
     public PlayerShip() {
         mPoints = new float[8];
         mCollisionPoints = new Vector2[3];
@@ -21,13 +20,13 @@ public class PlayerShip {
 
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
     }
-    
+
     public void render(ShapeRenderer renderer) {
         renderer.setColor(Color.WHITE);
         renderer.triangle(mPoints[0], mPoints[1], mPoints[2], mPoints[3], mPoints[6], mPoints[7]);
         renderer.triangle(mPoints[0], mPoints[1], mPoints[4], mPoints[5], mPoints[6], mPoints[7]);
     }
-    
+
     public void updatePoints(Player player) {
         final float cos = (float) Math.cos(player.getAngle());
         final float sin = (float) Math.sin(player.getAngle());
@@ -62,15 +61,15 @@ public class PlayerShip {
         mCollisionPoints[1].set(mPoints[2], mPoints[3]);
         mCollisionPoints[2].set(mPoints[4], mPoints[5]);
     }
-    
+
     public void resetAfterCheckPoint() {
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
     }
-    
+
     public Vector2[] getCollisionPoints() {
         return mCollisionPoints;
     }
-    
+
     public Vector2 getOldRightPosition() {
         return mOldPosOfRightPoint;
     }
