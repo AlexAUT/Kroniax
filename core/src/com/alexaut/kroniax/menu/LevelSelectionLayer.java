@@ -52,8 +52,8 @@ public class LevelSelectionLayer extends Table {
 
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    String lvlPath = "data/levels/official/level" + actor.getName() + ".kroniax";
-                    gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlPath));
+                    int lvlNumber = Integer.parseInt(actor.getName());
+                    gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlNumber));
                 }
             });
 

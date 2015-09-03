@@ -20,6 +20,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class GameScene implements Screen {
 
     final Application mApp;
+    
+    int mLvlNumber;
 
     GameController mGameController;
 
@@ -34,8 +36,9 @@ public class GameScene implements Screen {
 
     Music mMusic;
 
-    public GameScene(Application app, String lvlPath) {
+    public GameScene(Application app, int lvlNumber) {
         mApp = app;
+        mLvlNumber = lvlNumber;
 
         mGameController = new GameController(app);
         Gdx.input.setInputProcessor(mGameController);
@@ -43,7 +46,7 @@ public class GameScene implements Screen {
         mCamera = new Camera();
 
         try {
-            mMap = new TileMapLoader().load(Gdx.files.internal(lvlPath));
+            mMap = new TileMapLoader().load(Gdx.files.internal("data/levels/official/level" + lvlNumber + ".kroniax"));
         } catch (Exception e1) {
             System.out.println(e1.getMessage());
             e1.printStackTrace();
