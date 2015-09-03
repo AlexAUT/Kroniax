@@ -39,7 +39,7 @@ public class Level {
     public boolean checkCollision(Player player) {
         return mCollisionHandler.collide(player);
     }
-    
+
     public void resetScripts() {
         mScriptHandler.resetScripts();
     }

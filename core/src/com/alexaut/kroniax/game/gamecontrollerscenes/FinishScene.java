@@ -12,7 +12,7 @@ public class FinishScene extends Table {
         Label label = new Label("You have beaten this level!", app.getGuiSkin());
         add(label);
         row().padTop(175.f);
-        
+
         label = new Label("Press Space or click left to go to the next level", app.getGuiSkin());
         add(label);
 

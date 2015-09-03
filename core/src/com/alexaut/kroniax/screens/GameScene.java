@@ -20,7 +20,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class GameScene implements Screen {
 
     final Application mApp;
-    
+
     int mLvlNumber;
 
     GameController mGameController;
@@ -63,14 +63,14 @@ public class GameScene implements Screen {
             // Level not compatible
             goBackToMenu();
         }
-        
+
         mMusic = music;
-        if(mMusic == null) {
+        if (mMusic == null) {
             mMusic = Gdx.audio
                     .newMusic(Gdx.files.internal("data/music/InfinityTechnoTranceProject2011byMafiaFLairBeatz.ogg"));
             mMusic.setVolume(0.5f);
             mMusic.setLooping(true);
-            //mMusic.play();
+            // mMusic.play();
         }
 
     }
@@ -108,17 +108,17 @@ public class GameScene implements Screen {
             mGameController.setState(State.AT_START);
             mLevel.resetScripts();
         }
-        
+
         if (mGameController.getState() == State.FINISHED)
             mApp.getProgressManager().finishedLevel(mLvlNumber);
-        
+
         // Check if we need to load the next level
-        if(mGameController.getState() == State.LOAD_NEXT_LEVEL) {
+        if (mGameController.getState() == State.LOAD_NEXT_LEVEL) {
             Music cacheMusic = mMusic;
             mMusic = null;
             dispose();
             mApp.setScreen(new GameScene(mApp, mLvlNumber + 1, cacheMusic));
-            
+
         }
 
     }
@@ -173,14 +173,14 @@ public class GameScene implements Screen {
     @Override
     public void hide() {
         // TODO Auto-generated method stub
-        if(mMusic != null)
+        if (mMusic != null)
             mMusic.stop();
     }
 
     @Override
     public void dispose() {
         mLevel.dispose();
-        if(mMusic != null)
+        if (mMusic != null)
             mMusic.dispose();
     }
 

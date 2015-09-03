@@ -36,9 +36,9 @@ public class LevelScriptHandler {
                 script.update(deltaTime, gameController, level, player, camera);
         }
     }
-    
+
     public void resetScripts() {
-        for(Script script : mScripts)
+        for (Script script : mScripts)
             script.reset();
     }
 }

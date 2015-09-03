@@ -33,7 +33,7 @@ public class GameController extends InputAdapter {
     private CrashedScene mCrashedScene;
     private FinishScene mFinishScene;
 
-    public GameController(Application app) {        
+    public GameController(Application app) {
         mState = State.AT_START;
 
         mIdentityMatrix = new Matrix4();
@@ -60,7 +60,7 @@ public class GameController extends InputAdapter {
 
         if (newState == State.CRASHED)
             mCrashedScene.addAction(Actions.fadeIn(0.5f));
-        
+
         if (newState == State.FINISHED)
             mFinishScene.addAction(Actions.fadeIn(0.5f));
     }
@@ -134,7 +134,7 @@ public class GameController extends InputAdapter {
             mStartScene.addAction(Actions.fadeIn(0.5f));
             mState = State.RESET_TO_CHECKPOINT;
         }
-        
+
         if (mState == State.FINISHED) {
             mFinishScene.addAction(Actions.fadeOut(0.5f));
             Timer.schedule(new Timer.Task() {
