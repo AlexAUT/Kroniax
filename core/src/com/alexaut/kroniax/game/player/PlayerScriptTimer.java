@@ -41,6 +41,5 @@ public class PlayerScriptTimer {
             renderer.setColor(mColors[i]);
             renderer.arc(x + (i * offsetX), y + (i * offsetY), 12.f, 90.f, 360.f * mValues[i]);
         }
-        System.out.println(mCurrentIndex);
     }
 }

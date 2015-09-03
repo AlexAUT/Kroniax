@@ -20,7 +20,5 @@ public class SpeedChangeScript extends TimedScript {
             Camera camera) {
         player.changeVelocity(mValue * interp);
         player.updateScriptTimer(getElapsedPercentage(), Color.CYAN);
-        player.updateScriptTimer(getElapsedPercentage(), Color.ORANGE);
-        player.updateScriptTimer(getElapsedPercentage(), Color.GREEN);
     }
 }
