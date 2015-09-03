@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game.scripts;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.level.Level;
 
@@ -36,5 +37,5 @@ public abstract class Script {
         return mStarted;
     }
 
-    public abstract void update(float deltaTime, Level level, Player player, Camera camera);
+    public abstract void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera);
 }

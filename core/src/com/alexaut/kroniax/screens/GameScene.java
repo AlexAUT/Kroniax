@@ -76,7 +76,7 @@ public class GameScene implements Screen {
         mGameController.update(deltaTime);
 
         if (mGameController.isRunning()) {
-            mLevel.update(deltaTime, mPlayer, mCamera);
+            mLevel.update(deltaTime, mGameController, mPlayer, mCamera);
             mPlayer.update(deltaTime);
 
             // Check collision

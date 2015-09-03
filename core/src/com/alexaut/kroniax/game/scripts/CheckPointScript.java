@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game.scripts;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.level.Level;
 
@@ -15,7 +16,7 @@ public class CheckPointScript extends Script {
         mStartAngle = start_angle;
     }
 
-    public void update(float deltaTime, Level level, Player player, Camera camera) {
+    public void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera) {
         // Convert startpos to pixels
         float x = mStartX * level.getProperties().tileSize.x;
         float y = (level.getProperties().tileCount.y - mStartY) * level.getProperties().tileSize.y;

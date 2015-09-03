@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game.level;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,11 +29,11 @@ public class Level {
         mScriptHandler = new LevelScriptHandler(map.getScripts());
     }
 
-    public void update(float deltaTime, Player player, Camera camera) {
+    public void update(float deltaTime, GameController gameController, Player player, Camera camera) {
         // Check collision with map objects
         mScriptHandler.checkTriggers(mMap.getLevelObjects(), player);
         // Update running scripts
-        mScriptHandler.update(deltaTime, this, player, camera);
+        mScriptHandler.update(deltaTime, gameController, this, player, camera);
     }
 
     public boolean checkCollision(Player player) {

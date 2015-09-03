@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game.scripts;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.level.Level;
 
@@ -13,7 +14,7 @@ public class GravityChangeScript extends TimedScript {
     }
 
     @Override
-    protected void updateWithInterp(float interp, Level level, Player player, Camera camera) {
+    protected void updateWithInterp(float interp, GameController gameController, Level level, Player player, Camera camera) {
         player.changeGravity(mValue * interp);
     }
 }

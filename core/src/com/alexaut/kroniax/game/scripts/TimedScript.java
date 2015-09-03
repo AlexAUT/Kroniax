@@ -1,6 +1,7 @@
 package com.alexaut.kroniax.game.scripts;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.level.Level;
 
@@ -14,7 +15,7 @@ public abstract class TimedScript extends Script {
     }
 
     @Override
-    public void update(float deltaTime, Level level, Player player, Camera camera) {
+    public void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera) {
         float interp = 0;
         if (mDuration == 0)
             interp = 1;
@@ -25,7 +26,7 @@ public abstract class TimedScript extends Script {
         }
 
         mElapsedTime += deltaTime;
-        updateWithInterp(interp, level, player, camera);
+        updateWithInterp(interp, gameController, level, player, camera);
         if (mElapsedTime >= mDuration)
             stop();
     }
@@ -36,5 +37,5 @@ public abstract class TimedScript extends Script {
         mElapsedTime = 0;
     }
 
-    protected abstract void updateWithInterp(float interp, Level level, Player player, Camera camera);
+    protected abstract void updateWithInterp(float interp, GameController gameController, Level level, Player player, Camera camera);
 }

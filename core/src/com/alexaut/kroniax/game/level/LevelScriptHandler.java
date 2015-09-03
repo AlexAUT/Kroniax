@@ -3,6 +3,7 @@ package com.alexaut.kroniax.game.level;
 import java.util.ArrayList;
 
 import com.alexaut.kroniax.game.Camera;
+import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
 import com.alexaut.kroniax.game.scripts.Script;
 import com.badlogic.gdx.math.Vector2;
@@ -29,10 +30,10 @@ public class LevelScriptHandler {
         }
     }
 
-    public void update(float deltaTime, Level level, Player player, Camera camera) {
+    public void update(float deltaTime, GameController gameController, Level level, Player player, Camera camera) {
         for (Script script : mScripts) {
             if (script != null && script.isAlive())
-                script.update(deltaTime, level, player, camera);
+                script.update(deltaTime, gameController, level, player, camera);
         }
     }
 }
