@@ -108,12 +108,16 @@ public class GameScene implements Screen {
             mGameController.setState(State.AT_START);
         }
         
+        if (mGameController.getState() == State.FINISHED)
+            mApp.getProgressManager().finishedLevel(mLvlNumber);
+        
         // Check if we need to load the next level
         if(mGameController.getState() == State.LOAD_NEXT_LEVEL) {
             Music cacheMusic = mMusic;
             mMusic = null;
             dispose();
             mApp.setScreen(new GameScene(mApp, mLvlNumber + 1, cacheMusic));
+            
         }
 
     }

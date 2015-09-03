@@ -33,7 +33,7 @@ public class GameController extends InputAdapter {
     private CrashedScene mCrashedScene;
     private FinishScene mFinishScene;
 
-    public GameController(Application app) {
+    public GameController(Application app) {        
         mState = State.AT_START;
 
         mIdentityMatrix = new Matrix4();
