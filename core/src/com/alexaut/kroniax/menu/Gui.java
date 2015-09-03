@@ -103,6 +103,7 @@ public class Gui {
 
     public void show() {
         Gdx.input.setInputProcessor(mStage);
+        mLevelSelectionLayer.updateLevelButtons(getApplication());
     }
 
     public void fadeActiveIn() {

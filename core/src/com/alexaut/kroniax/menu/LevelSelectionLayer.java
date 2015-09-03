@@ -1,5 +1,6 @@
 package com.alexaut.kroniax.menu;
 
+import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.menu.Gui.Layer;
 import com.alexaut.kroniax.screens.GameScene;
 import com.badlogic.gdx.math.Interpolation;
@@ -40,7 +41,6 @@ public class LevelSelectionLayer extends Table {
     }
 
     public void setupLevelGrid(final Gui gui) {
-        final int unlocked_levels = gui.getApplication().getProgressManager().getUnlockedLevels();
         final int rowSize = 3;
 
         for (int i = 1; i <= 9; i++) {
@@ -56,14 +56,18 @@ public class LevelSelectionLayer extends Table {
                     gui.getApplication().setScreen(new GameScene(gui.getApplication(), lvlPath));
                 }
             });
-            
-            if(i > unlocked_levels) {
-                bt.setVisible(false);
-            }
 
             add(bt).pad(5.f).width(150).height(150);
             if (i != 0 && i % rowSize == 0)
                 row();
+        }
+    }
+    
+    public void updateLevelButtons(Application app) {
+        int unlockedLevels = app.getProgressManager().getUnlockedLevels();
+        for(int i = 0; i < 9; i++) {
+            int number = Integer.parseInt(getChildren().get(i).getName());
+            getChildren().get(i).setVisible(number <= unlockedLevels);
         }
     }
 }
