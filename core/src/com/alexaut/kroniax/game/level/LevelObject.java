@@ -34,6 +34,8 @@ public abstract class LevelObject {
             return Color.CYAN;
         else if (mType.equalsIgnoreCase("gravity_change"))
             return Color.YELLOW;
+        else if (mType.equalsIgnoreCase("checkpoint"))
+            return Color.ORANGE;
 
         return Color.WHITE;
     }

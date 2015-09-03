@@ -32,7 +32,7 @@ public class GameController extends InputAdapter {
     private PauseScene mPauseScene;
     private CrashedScene mCrashedScene;
     private FinishScene mFinishScene;
-    
+
     public GameController(Application app) {
         mState = State.AT_START;
 
@@ -110,9 +110,9 @@ public class GameController extends InputAdapter {
     }
 
     private boolean startButton() {
-        //if(mActionRunning)
-           //((// return false;
-        
+        // if(mActionRunning)
+        // ((// return false;
+
         if (mState == State.AT_START) {
             mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
