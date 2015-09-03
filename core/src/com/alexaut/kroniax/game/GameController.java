@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Timer;
@@ -20,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 public class GameController extends InputAdapter {
     public enum State {
-        AT_START, RUNNING, CRASHED, RESET_TO_CHECKPOINT, FINISHED, PAUSE, BACK_TO_MENU
+        AT_START, RUNNING, CRASHED, RESET_TO_CHECKPOINT, FINISHED, PAUSE, BACK_TO_MENU, LOAD_NEXT_LEVEL
     }
 
     private State mState;
@@ -134,6 +133,17 @@ public class GameController extends InputAdapter {
             mCrashedScene.addAction(Actions.fadeOut(0.25f));
             mStartScene.addAction(Actions.fadeIn(0.5f));
             mState = State.RESET_TO_CHECKPOINT;
+        }
+        
+        if (mState == State.FINISHED) {
+            mFinishScene.addAction(Actions.fadeOut(0.5f));
+            Timer.schedule(new Timer.Task() {
+
+                @Override
+                public void run() {
+                    mState = State.LOAD_NEXT_LEVEL;
+                }
+            }, 0.5f);
         }
 
         return true;
