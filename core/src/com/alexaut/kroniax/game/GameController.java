@@ -33,8 +33,6 @@ public class GameController extends InputAdapter {
     private CrashedScene mCrashedScene;
     private FinishScene mFinishScene;
     
-    private boolean mActionRunning;
-    
     public GameController(Application app) {
         mState = State.AT_START;
 
@@ -51,8 +49,6 @@ public class GameController extends InputAdapter {
         mStage.addActor(mPauseScene);
         mStage.addActor(mCrashedScene);
         mStage.addActor(mFinishScene);
-        
-        mActionRunning = false;
     }
 
     public boolean isRunning() {
@@ -120,7 +116,6 @@ public class GameController extends InputAdapter {
         if (mState == State.AT_START) {
             mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
-            mActionRunning = true;
             Timer.schedule(new Timer.Task() {
 
                 @Override
