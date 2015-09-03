@@ -1,5 +1,6 @@
 package com.alexaut.kroniax.game;
 
+import com.alexaut.kroniax.game.level.LevelProperties;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;

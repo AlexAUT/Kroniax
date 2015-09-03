@@ -1,6 +1,6 @@
 package com.alexaut.kroniax.game.gameobjects;
 
-import com.alexaut.kroniax.game.LevelObject;
+import com.alexaut.kroniax.game.level.LevelObject;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;

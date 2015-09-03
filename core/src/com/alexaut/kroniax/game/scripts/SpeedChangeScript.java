@@ -1,8 +1,8 @@
 package com.alexaut.kroniax.game.scripts;
 
 import com.alexaut.kroniax.game.Camera;
-import com.alexaut.kroniax.game.Level;
 import com.alexaut.kroniax.game.Player;
+import com.alexaut.kroniax.game.level.Level;
 
 public class SpeedChangeScript extends TimedScript {
 
