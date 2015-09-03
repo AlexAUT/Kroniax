@@ -4,6 +4,7 @@ import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.Player;
+import com.alexaut.kroniax.game.GameController.State;
 import com.alexaut.kroniax.game.level.Level;
 import com.alexaut.kroniax.game.tilemap.TileMap;
 import com.alexaut.kroniax.game.tilemap.TileMapLoader;
@@ -19,9 +20,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class GameScene implements Screen {
 
     final Application mApp;
-    
+
     GameController mGameController;
-    
+
     Camera mCamera;
 
     Level mLevel;
@@ -35,10 +36,10 @@ public class GameScene implements Screen {
 
     public GameScene(Application app, String lvlPath) {
         mApp = app;
-        
+
         mGameController = new GameController(app);
         Gdx.input.setInputProcessor(mGameController);
-        
+
         mCamera = new Camera();
 
         try {
@@ -73,11 +74,10 @@ public class GameScene implements Screen {
 
     public void update(float deltaTime) {
         mGameController.update(deltaTime);
-        
-        if(mGameController.isRunning()) {
+
+        if (mGameController.isRunning()) {
             mLevel.update(deltaTime, mPlayer, mCamera);
             mPlayer.update(deltaTime);
-            
 
             // Check collision
             mLevel.checkCollision(mPlayer);
@@ -87,13 +87,13 @@ public class GameScene implements Screen {
 
             if (Gdx.input.isKeyPressed(Input.Keys.F1))
                 System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-                goBackToMenu();
-
         }
-        //Always update camera
+        // Always update camera
         mCamera.update(mPlayer.getPosition(), mLevel.getProperties().fixedCamera);
+
+        // Check if we have to go back to menu
+        if (mGameController.getState() == State.BACK_TO_MENU)
+            goBackToMenu();
     }
 
     @Override
@@ -121,7 +121,7 @@ public class GameScene implements Screen {
         shapeRenderer.setProjectionMatrix(mCamera.getTransform());
         mPlayer.render(shapeRenderer);
         shapeRenderer.end();
-        
+
         mGameController.render(shapeRenderer);
     }
 

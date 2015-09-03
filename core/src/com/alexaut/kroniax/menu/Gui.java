@@ -19,7 +19,7 @@ public class Gui {
     private Layer mActiveLayer = Layer.MAIN;
 
     private Stage mStage;
-    
+
     private Skin mSkin;
 
     private MainLayer mMainLayer;
@@ -98,7 +98,7 @@ public class Gui {
     }
 
     public void hide() {
-        
+
     }
 
     public void show() {
