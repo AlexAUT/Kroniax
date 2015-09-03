@@ -53,8 +53,8 @@ public class GameController extends InputAdapter {
 
     public void setState(State newState) {
         mState = newState;
-        
-        if(newState == State.CRASHED) 
+
+        if (newState == State.CRASHED)
             mCrashedScene.addAction(Actions.fadeIn(0.5f));
     }
 
@@ -121,7 +121,7 @@ public class GameController extends InputAdapter {
                 }
             }, 0.25f);
         }
-        
+
         if (mState == State.CRASHED) {
             mCrashedScene.addAction(Actions.fadeOut(0.25f));
             mStartScene.addAction(Actions.fadeIn(0.5f));

@@ -20,8 +20,6 @@ public class Player {
     private Vector2 mCollisionPoints[];
     private Vector2 mOldPosOfRightPoint;
 
-    boolean mAlive;
-    
     private Vector2 mCachePosition;
     private Vector2 mCacheSize;
     private float mCacheVelocity;
@@ -43,13 +41,11 @@ public class Player {
         mCollisionPoints[2] = new Vector2();
         mOldPosOfRightPoint = new Vector2();
 
-        mAlive = true;
-
         updatePoints();
 
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
-        
-        //Cache start values for resetting the player
+
+        // Cache start values for resetting the player
         mCachePosition = new Vector2(mPosition);
         mCacheSize = new Vector2(mSize);
         mCacheVelocity = mVelocity;
@@ -133,10 +129,6 @@ public class Player {
         return mOldPosOfRightPoint;
     }
 
-    public void setAlive(boolean alive) {
-        mAlive = alive;
-    }
-
     public void changeVelocity(float addition) {
         mVelocity += addition;
     }
@@ -145,10 +137,6 @@ public class Player {
         mGravity += addition;
     }
 
-    public boolean isAlive() {
-        return mAlive;
-    }
-    
     public void addCheckPoint(float x, float y, float angle) {
         mCachePosition.set(x, y);
         mCacheSize.set(mSize);
@@ -157,19 +145,19 @@ public class Player {
         mCacheGravity = mGravity;
         System.out.println("Added checkpoint");
     }
-    
+
     public void resetToCheckPoint() {
         mPosition.set(mCachePosition);
         mSize.set(mCacheSize);
         mVelocity = mCacheVelocity;
         mAngle = mCacheAngle;
         mGravity = mCacheGravity;
-        //Update player model
+        // Update player model
         updatePoints();
-        //We need to reset the old position hardcoded, otherwise it would collide infinite
+        // We need to reset the old position hardcoded, otherwise it would
+        // collide infinite
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
-        //Set the play back again to live
-        setAlive(true);
+        // Set the play back again to live
     }
 
 }

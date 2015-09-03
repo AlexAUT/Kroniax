@@ -74,16 +74,15 @@ public class GameScene implements Screen {
 
     public void update(float deltaTime) {
         mGameController.update(deltaTime);
-        
+
         if (mGameController.isRunning()) {
             mLevel.update(deltaTime, mPlayer, mCamera);
             mPlayer.update(deltaTime);
 
             // Check collision
-            mLevel.checkCollision(mPlayer);
-            // Now check if the player collided
-            if (!mPlayer.isAlive())
+            if (mLevel.checkCollision(mPlayer)) {
                 mGameController.setState(State.CRASHED);
+            }
 
             if (Gdx.input.isKeyPressed(Input.Keys.F1))
                 System.out.println("Frametime: " + 1.f / Gdx.graphics.getDeltaTime());
@@ -94,9 +93,9 @@ public class GameScene implements Screen {
         // Check if we have to go back to menu
         if (mGameController.getState() == State.BACK_TO_MENU)
             goBackToMenu();
-        
+
         // Check if we have to set the player to the last checkpoint
-        if(mGameController.getState() == State.RESET_TO_CHECKPOINT) {
+        if (mGameController.getState() == State.RESET_TO_CHECKPOINT) {
             mPlayer.resetToCheckPoint();
             System.out.println("Resettet!");
             mGameController.setState(State.AT_START);

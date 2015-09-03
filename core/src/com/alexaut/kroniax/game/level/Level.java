@@ -35,8 +35,8 @@ public class Level {
         mScriptHandler.update(deltaTime, this, player, camera);
     }
 
-    public void checkCollision(Player player) {
-        mCollisionHandler.collide(player);
+    public boolean checkCollision(Player player) {
+        return mCollisionHandler.collide(player);
     }
 
     public void render(SpriteBatch spriteRenderer, ShapeRenderer shapeRenderer, Camera camera) {

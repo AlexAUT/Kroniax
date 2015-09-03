@@ -29,7 +29,7 @@ public abstract class TimedScript extends Script {
         if (mElapsedTime >= mDuration)
             stop();
     }
-    
+
     @Override
     public void reset() {
         super.reset();
