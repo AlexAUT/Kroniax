@@ -30,7 +30,7 @@ public class GameScene implements Screen {
 
     Level mLevel;
     Player mPlayer;
-    
+
     GameHUD mGameHUD;
 
     boolean mStarted = false;
@@ -77,7 +77,7 @@ public class GameScene implements Screen {
             mMusic.setLooping(true);
             mMusic.play();
         }
-        
+
         mGameHUD = new GameHUD(app);
     }
 
@@ -150,7 +150,7 @@ public class GameScene implements Screen {
         // Now render
         mLevel.render(spriteBatch, shapeRenderer, mCamera);
         spriteBatch.end();
-        
+
         spriteBatch.begin();
         mGameHUD.render(spriteBatch);
         spriteBatch.end();

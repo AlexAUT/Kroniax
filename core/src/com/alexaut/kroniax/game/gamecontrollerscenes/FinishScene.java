@@ -14,18 +14,18 @@ public class FinishScene extends Table {
         Label label = new Label("You have beaten this level!", app.getGuiSkin());
         add(label);
         row().padTop(175.f);
-        
+
         Label label1;
         Label label2;
-        
-        if(Gdx.app.getType() != ApplicationType.Android) {
+
+        if (Gdx.app.getType() != ApplicationType.Android) {
             label1 = new Label("Press Space or click left to go to the next level", app.getGuiSkin());
             label2 = new Label("Press Escape to go back to menu", app.getGuiSkin());
         } else {
             label1 = new Label("Touch the screen to go to the next level", app.getGuiSkin());
             label2 = new Label("Press the back button to go back to the menu", app.getGuiSkin());
         }
-        
+
         add(label1);
         row().padTop(75.f);
         add(label2);
