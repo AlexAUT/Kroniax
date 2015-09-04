@@ -25,7 +25,8 @@ public class MenuScene implements Screen {
     @Override
     public void show() {
         mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/PowerFight-ElectroTechnoBeat.ogg"));
-        // mMusic.play();
+        mMusic.setVolume(0.75f);
+        mMusic.play();
         mMusic.setLooping(true);
 
         mGui.show();
@@ -61,7 +62,7 @@ public class MenuScene implements Screen {
     @Override
     public void resume() {
         // TODO Auto-generated method stub
-
+        mMusic.play();
     }
 
     @Override
