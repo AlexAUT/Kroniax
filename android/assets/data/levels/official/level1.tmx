@@ -5,7 +5,7 @@
   <property name="gravity" value="100"/>
   <property name="spawn_x" value="8"/>
   <property name="spawn_y" value="18"/>
-  <property name="velocity" value="200"/>
+  <property name="velocity" value="250"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="15" tileheight="15" spacing="5" margin="5">
   <image source="../../sprites/background_001.jpg" width="1024" height="1024"/>
@@ -71,7 +71,7 @@
   <object id="3" type="speed_change" x="1618" y="15" width="15" height="687">
    <properties>
     <property name="time" value="1.5"/>
-    <property name="value" value="200"/>
+    <property name="value" value="300"/>
    </properties>
   </object>
   <object id="4" type="gravity_change" x="2670" y="15" width="15" height="690">

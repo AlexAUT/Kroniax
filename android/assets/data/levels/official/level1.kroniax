@@ -9,7 +9,7 @@
 [mapproperties]
 fixed_camera 
 gravity 100
-velocity 500
+velocity 250
 spawn_x 8
 spawn_y 18
 [/mapproperties]
@@ -607,7 +607,7 @@ collision
 speed_change 1618 15 15 687
 [properties]
 time 1.5
-value 200
+value 300
 [/properties]
 [/rect]
 [rect]

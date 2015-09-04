@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="750" height="24" tilewidth="30" tileheight="30" nextobjectid="4">
  <properties>
   <property name="fixed_camera" value=""/>
-  <property name="spawn_x" value="14"/>
+  <property name="spawn_x" value="7"/>
   <property name="spawn_y" value="5"/>
  </properties>
  <tileset firstgid="1" name="colors" tilewidth="30" tileheight="30" spacing="5" margin="2">
