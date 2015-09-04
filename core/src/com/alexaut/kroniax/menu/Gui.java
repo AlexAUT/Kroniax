@@ -103,6 +103,8 @@ public class Gui {
 
     public void show() {
         Gdx.input.setInputProcessor(mStage);
+        Gdx.input.setCatchBackKey(false);
+        Gdx.input.setCatchMenuKey(false);
         mLevelSelectionLayer.updateLevelButtons(getApplication());
     }
 

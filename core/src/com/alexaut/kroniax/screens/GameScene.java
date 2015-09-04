@@ -4,6 +4,7 @@ import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.game.Camera;
 import com.alexaut.kroniax.game.GameController;
 import com.alexaut.kroniax.game.GameController.State;
+import com.alexaut.kroniax.game.GameHUD;
 import com.alexaut.kroniax.game.level.Level;
 import com.alexaut.kroniax.game.player.Player;
 import com.alexaut.kroniax.game.tilemap.TileMap;
@@ -29,6 +30,8 @@ public class GameScene implements Screen {
 
     Level mLevel;
     Player mPlayer;
+    
+    GameHUD mGameHUD;
 
     boolean mStarted = false;
 
@@ -42,6 +45,8 @@ public class GameScene implements Screen {
 
         mGameController = new GameController(app);
         Gdx.input.setInputProcessor(mGameController);
+        Gdx.input.setCatchBackKey(true);
+        Gdx.input.setCatchMenuKey(true);
 
         mCamera = new Camera();
 
@@ -72,7 +77,8 @@ public class GameScene implements Screen {
             mMusic.setLooping(true);
             mMusic.play();
         }
-
+        
+        mGameHUD = new GameHUD(app);
     }
 
     @Override
@@ -86,10 +92,12 @@ public class GameScene implements Screen {
         if (mGameController.isRunning()) {
             mPlayer.update(deltaTime);
             mLevel.update(deltaTime, mGameController, mPlayer, mCamera);
+            mGameHUD.update(deltaTime);
 
             // Check collision
             if (mLevel.checkCollision(mPlayer)) {
                 mGameController.setState(State.CRASHED);
+                mGameHUD.addDeath();
             }
 
             if (Gdx.input.isKeyPressed(Input.Keys.F1))
@@ -141,6 +149,10 @@ public class GameScene implements Screen {
         shapeRenderer.setProjectionMatrix(mCamera.getTransform());
         // Now render
         mLevel.render(spriteBatch, shapeRenderer, mCamera);
+        spriteBatch.end();
+        
+        spriteBatch.begin();
+        mGameHUD.render(spriteBatch);
         spriteBatch.end();
 
         // Render Player

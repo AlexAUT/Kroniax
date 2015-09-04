@@ -108,15 +108,12 @@ public class GameController extends InputAdapter {
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.SPACE)
             return startButton();
-        if (keycode == Input.Keys.ESCAPE)
+        if (keycode == Input.Keys.ESCAPE || keycode == Input.Keys.BACK)
             return escapeKey();
         return false;
     }
 
     private boolean startButton() {
-        // if(mActionRunning)
-        // ((// return false;
-
         if (mState == State.AT_START) {
             mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
