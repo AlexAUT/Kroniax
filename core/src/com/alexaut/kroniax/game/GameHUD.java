@@ -1,7 +1,5 @@
 package com.alexaut.kroniax.game;
 
-import java.text.DecimalFormat;
-
 import com.alexaut.kroniax.Application;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,8 +13,6 @@ public class GameHUD {
 
     private OrthographicCamera mCamera;
 
-    private DecimalFormat mFormat;
-
     public GameHUD(Application app) {
         mTime = 0;
         mTries = 0;
@@ -26,8 +22,6 @@ public class GameHUD {
         mCamera = new OrthographicCamera(1280, 720);
         mCamera.position.set(640, 360, 0);
         mCamera.update();
-
-        mFormat = new DecimalFormat("0.0");
     }
 
     public void addDeath() {
@@ -40,7 +34,9 @@ public class GameHUD {
 
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.setProjectionMatrix(mCamera.combined);
-        mFont.draw(spriteBatch, "Time: " + mFormat.format(mTime), 5, 30);
+        spriteBatch.enableBlending();
+        mFont.draw(spriteBatch, "Time: " + (int)(mTime * 10.f) / 10.f, 5, 30);
         mFont.draw(spriteBatch, "Deaths: " + mTries, 5, 60);
+        spriteBatch.disableBlending();
     }
 }
