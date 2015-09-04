@@ -66,6 +66,10 @@ public class GameController extends InputAdapter {
 
         if (newState == State.FINISHED)
             mFinishScene.addAction(Actions.fadeIn(0.5f));
+        
+        if (newState == State.PAUSE) {
+            mPauseScene.setColor(1, 1, 1, 1);
+        }
     }
 
     public State getState() {

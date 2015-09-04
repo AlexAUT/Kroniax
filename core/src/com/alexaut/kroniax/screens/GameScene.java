@@ -162,6 +162,7 @@ public class GameScene implements Screen {
     public void pause() {
         // TODO Auto-generated method stub
         mMusic.pause();
+        mGameController.setState(State.PAUSE);
     }
 
     @Override
