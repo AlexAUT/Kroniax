@@ -6,15 +6,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MenuScene implements Screen {
 
     private Gui mGui;
 
     private Music mMusic;
+    
+    private SpriteBatch mSpriteBatch;
 
     public MenuScene(Application app) {
         mGui = new Gui(app);
+        
+        mSpriteBatch = app.getSpriteBatch();
     }
 
     @Override
@@ -34,8 +39,12 @@ public class MenuScene implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // mStage.getViewport().setCamera(mCamera);
-
-        mGui.render();
+        
+        mSpriteBatch.enableBlending();
+        mSpriteBatch.begin();
+        mGui.render(mSpriteBatch);
+        mSpriteBatch.end();
+        mSpriteBatch.disableBlending();
     }
 
     @Override

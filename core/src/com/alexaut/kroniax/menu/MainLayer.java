@@ -4,6 +4,7 @@ import com.alexaut.kroniax.menu.Gui.Layer;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -13,6 +14,10 @@ public class MainLayer extends Table {
     public MainLayer(final Gui gui) {
         super();
         setFillParent(true);
+        setY(0);
+        Image logo = new Image(gui.getSkin().getRegion("logo"));
+        add(logo);
+        row().padTop(75.f);
 
         // Start button
         TextButton bt = new TextButton("Play", gui.getSkin());
@@ -30,7 +35,7 @@ public class MainLayer extends Table {
             }
         });
         add(bt).width(450).height(100);
-        row().padTop(50.f);
+        row().padTop(50.f).padBottom(100.f);
 
         // Credits button
         bt = new TextButton("Credits", gui.getSkin());
