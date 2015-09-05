@@ -8,6 +8,7 @@ import com.alexaut.kroniax.game.scripts.FinishScript;
 import com.alexaut.kroniax.game.scripts.GravityChangeScript;
 import com.alexaut.kroniax.game.scripts.Script;
 import com.alexaut.kroniax.game.scripts.SpeedChangeScript;
+import com.alexaut.kroniax.game.scripts.TutorialScript;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -195,6 +196,9 @@ public class TileMapLoader {
         } else if (type.equalsIgnoreCase("gravity_change")) {
             if (properties_map.size() > 1)
                 script = new GravityChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
+        } else if(type.equalsIgnoreCase("tutorial")) {
+            if (properties_map.size() > 0)
+                script = new TutorialScript(properties_map.get("text"));
         }
 
         map.getScripts().add(script);
