@@ -68,12 +68,14 @@ public class GameController extends InputAdapter {
 
         if (newState == State.CRASHED) {
             mCrashedScene.clearActions();
-            mCrashedScene.addAction(Actions.fadeIn(0.5f));
-            System.out.println("Fade in");
+            mCrashedScene.addAction(Actions.fadeIn(0.3f));
+            ignoreInput(0.5f);
         }
 
-        if (newState == State.FINISHED)
-            mFinishScene.addAction(Actions.fadeIn(0.5f));
+        if (newState == State.FINISHED) {
+            mFinishScene.addAction(Actions.fadeIn(0.3f));
+            ignoreInput(0.5f);
+        }
 
         if (newState == State.PAUSE) {
             mPauseScene.setColor(1, 1, 1, 1);
@@ -81,7 +83,7 @@ public class GameController extends InputAdapter {
         
         if (newState == State.SHOW_MODAL) {
             ignoreInput(1.0f);
-            mModalScene.addAction(Actions.fadeIn(0.5f));
+            mModalScene.addAction(Actions.fadeIn(0.3f));
         }
     }
     
@@ -130,7 +132,7 @@ public class GameController extends InputAdapter {
             shapeRenderer.begin(ShapeType.Filled);
             Gdx.gl.glEnable(GL20.GL_BLEND);
             Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-            shapeRenderer.setColor(0.1f, 0.1f, 0.1f, 0.9f);
+            shapeRenderer.setColor(0.0f, 0.0f, 0.0f, 0.9f);
             shapeRenderer.rect(-1, -1, 2, 2);
             shapeRenderer.end();
             Gdx.gl.glDisable(GL20.GL_BLEND);
@@ -159,24 +161,12 @@ public class GameController extends InputAdapter {
         if (mState == State.AT_START) {
             mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
-            Timer.schedule(new Timer.Task() {
-
-                @Override
-                public void run() {
-                    mState = State.RUNNING;
-                }
-            }, 0.25f);
+            setStateWithDelay(State.RUNNING, 0.25f);
         }
 
         if (mState == State.PAUSE) {
             mPauseScene.addAction(Actions.fadeOut(0.25f));
-            Timer.schedule(new Timer.Task() {
-
-                @Override
-                public void run() {
-                    mState = State.RUNNING;
-                }
-            }, 0.25f);
+            setStateWithDelay(State.RUNNING, 0.25f);
         }
 
         if (mState == State.CRASHED) {
@@ -190,13 +180,7 @@ public class GameController extends InputAdapter {
         if (mState == State.FINISHED) {
             mFinishScene.clearActions();
             mFinishScene.addAction(Actions.fadeOut(0.5f));
-            Timer.schedule(new Timer.Task() {
-
-                @Override
-                public void run() {
-                    mState = State.LOAD_NEXT_LEVEL;
-                }
-            }, 0.5f);
+            setStateWithDelay(State.LOAD_NEXT_LEVEL, 0.5f);
         }
         
         if (mState == State.SHOW_MODAL) {
