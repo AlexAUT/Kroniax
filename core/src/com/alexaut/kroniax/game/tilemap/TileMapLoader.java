@@ -209,7 +209,7 @@ public class TileMapLoader {
         for (; i < file.length; i++) {
             if (file[i].equalsIgnoreCase("[/properties]"))
                 break;
-            String[] values = file[i].split(" ");
+            String[] values = file[i].split(" ", 2);
             if (values.length == 1)
                 properties.put(values[0], "0");
             else if (values.length == 2)
