@@ -174,7 +174,7 @@ public class TileMapLoader {
         int y = (map.getHeight() * map.getTileHeight()) - Integer.parseInt(properties[2]);
 
         // Get properties
-        HashMap<String, Float> properties_map = new HashMap<String, Float>();
+        HashMap<String, String> properties_map = new HashMap<String, String>();
         for (i = i + 1; i < file.length; i++) {
             if (file[i].equalsIgnoreCase("[/rect]"))
                 break;
@@ -187,14 +187,14 @@ public class TileMapLoader {
             script = new FinishScript();
         } else if (type.equalsIgnoreCase("checkpoint")) {
             if (properties_map.size() > 1)
-                script = new CheckPointScript(properties_map.get("start_x"), properties_map.get("start_y"),
-                        properties_map.get("start_angle"));
+                script = new CheckPointScript(Float.parseFloat(properties_map.get("start_x")), Float.parseFloat(properties_map.get("start_y")),
+                        Float.parseFloat(properties_map.get("start_angle")));
         } else if (type.equalsIgnoreCase("speed_change")) {
             if (properties_map.size() > 1)
-                script = new SpeedChangeScript(properties_map.get("time"), properties_map.get("value"));
+                script = new SpeedChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
         } else if (type.equalsIgnoreCase("gravity_change")) {
             if (properties_map.size() > 1)
-                script = new GravityChangeScript(properties_map.get("time"), properties_map.get("value"));
+                script = new GravityChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
         }
 
         map.getScripts().add(script);
@@ -205,15 +205,15 @@ public class TileMapLoader {
         return i;
     }
 
-    private int parseProperties(int i, String[] file, HashMap<String, Float> properties) {
+    private int parseProperties(int i, String[] file, HashMap<String, String> properties) {
         for (; i < file.length; i++) {
             if (file[i].equalsIgnoreCase("[/properties]"))
                 break;
             String[] values = file[i].split(" ");
             if (values.length == 1)
-                properties.put(values[0], 0.f);
+                properties.put(values[0], "0");
             else if (values.length == 2)
-                properties.put(values[0], Float.parseFloat(values[1]));
+                properties.put(values[0], values[1]);
         }
         return i;
     }

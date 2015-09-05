@@ -630,4 +630,10 @@ start_angle 0
 start_y 24
 [/properties]
 [/rect]
+[rect]
+tutorial 1605 15 15 690
+[properties]
+text Cyan areas will indicate a speed change\nA little circle will appear above to ship to represent the duration of the change
+[/properties]
+[/rect]
 [/objects]
