@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="48" tilewidth="15" tileheight="15" nextobjectid="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="48" tilewidth="15" tileheight="15" nextobjectid="13">
  <properties>
   <property name="fixed_camera" value=""/>
   <property name="gravity" value="100"/>
@@ -88,9 +88,24 @@
     <property name="start_y" value="24"/>
    </properties>
   </object>
-  <object id="9" type="tutorial" x="1605" y="15" width="15" height="690">
+  <object id="9" type="modal_text" x="1605" y="15" width="15" height="690">
    <properties>
-    <property name="text" value="Cyan areas will indicate a speed change\nA little circle will appear above to ship to represent the duration of the change"/>
+    <property name="text" value="Cyan areas will change your speed over a specific time. A small circle will show how long your speed changes."/>
+   </properties>
+  </object>
+  <object id="10" type="modal_text" x="2655" y="15" width="15" height="690">
+   <properties>
+    <property name="text" value="Yellow areas will change the gravity over a specific time. A small circle will show how long the gravity changes."/>
+   </properties>
+  </object>
+  <object id="11" type="modal_text" x="4020" y="15" width="15" height="690">
+   <properties>
+    <property name="text" value="Orange areas are checkpoints, if you will crash you will respawn at the last checkpoint you have passed"/>
+   </properties>
+  </object>
+  <object id="12" type="modal_text" x="225" y="15" width="15" height="690">
+   <properties>
+    <property name="text" value="Press space, touch the screen or press the left mouse button to steer the ship upwards to avoid the walls"/>
    </properties>
   </object>
  </objectgroup>

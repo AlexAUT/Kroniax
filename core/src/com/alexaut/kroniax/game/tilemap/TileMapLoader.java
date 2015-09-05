@@ -196,7 +196,7 @@ public class TileMapLoader {
         } else if (type.equalsIgnoreCase("gravity_change")) {
             if (properties_map.size() > 1)
                 script = new GravityChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
-        } else if(type.equalsIgnoreCase("tutorial")) {
+        } else if(type.equalsIgnoreCase("modal_text")) {
             if (properties_map.size() > 0)
                 script = new TutorialScript(properties_map.get("text"));
         }

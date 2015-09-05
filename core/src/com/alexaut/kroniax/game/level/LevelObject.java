@@ -36,6 +36,8 @@ public abstract class LevelObject {
             return Color.YELLOW;
         else if (mType.equalsIgnoreCase("checkpoint"))
             return Color.ORANGE;
+        else if (mType.equalsIgnoreCase("modal_text"))
+            return new Color(0, 0, 0, 0);
 
         return Color.WHITE;
     }

@@ -14,7 +14,8 @@ public class ModalScene extends Table {
         setFillParent(true);
 
         mText = new Label("No Text set yet", app.getGuiSkin());
-        add(mText);
+        mText.setWrap(true);
+        add(mText).width(900);
         row().padTop(175.f);
 
         Label label1;

@@ -631,9 +631,27 @@ start_y 24
 [/properties]
 [/rect]
 [rect]
-tutorial 1605 15 15 690
+modal_text 1605 15 15 690
 [properties]
-text Cyan areas will indicate a speed change\nA little circle will appear above to ship to represent the duration of the change
+text Cyan areas will change your speed over a specific time. A small circle will show how long your speed changes.
+[/properties]
+[/rect]
+[rect]
+modal_text 2655 15 15 690
+[properties]
+text Yellow areas will change the gravity over a specific time. A small circle will show how long the gravity changes.
+[/properties]
+[/rect]
+[rect]
+modal_text 4020 15 15 690
+[properties]
+text Orange areas are checkpoints, if you will crash you will respawn at the last checkpoint you have passed
+[/properties]
+[/rect]
+[rect]
+modal_text 225 15 15 690
+[properties]
+text Press space, touch the screen or press the left mouse button to steer the ship upwards to avoid the walls
 [/properties]
 [/rect]
 [/objects]
