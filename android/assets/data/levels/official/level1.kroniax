@@ -8,7 +8,7 @@
 15
 [mapproperties]
 fixed_camera 
-gravity 100
+gravity 350
 velocity 250
 spawn_x 8
 spawn_y 18
@@ -614,7 +614,7 @@ value 300
 gravity_change 2670 15 15 690
 [properties]
 time 1
-value 50
+value 200
 [/properties]
 [/rect]
 [rect]
@@ -626,7 +626,7 @@ finish 5565 15 15 690
 checkpoint 4035 15 15 690
 [properties]
 start_x 269
-start_angle 0
+start_y_velocity 0
 start_y 24
 [/properties]
 [/rect]

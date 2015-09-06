@@ -189,7 +189,7 @@ public class TileMapLoader {
         } else if (type.equalsIgnoreCase("checkpoint")) {
             if (properties_map.size() > 1)
                 script = new CheckPointScript(Float.parseFloat(properties_map.get("start_x")), Float.parseFloat(properties_map.get("start_y")),
-                        Float.parseFloat(properties_map.get("start_angle")));
+                        Float.parseFloat(properties_map.get("start_y_velocity")));
         } else if (type.equalsIgnoreCase("speed_change")) {
             if (properties_map.size() > 1)
                 script = new SpeedChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));

@@ -9,6 +9,9 @@ public class PlayerShip {
     private float[] mPoints;
     private Vector2 mCollisionPoints[];
     private Vector2 mOldPosOfRightPoint;
+    
+    //Cache
+    private Vector2 mUnitVelocity;
 
     public PlayerShip() {
         mPoints = new float[8];
@@ -19,6 +22,8 @@ public class PlayerShip {
         mOldPosOfRightPoint = new Vector2();
 
         mOldPosOfRightPoint.set(mCollisionPoints[0]);
+        
+        mUnitVelocity = new Vector2();
     }
 
     public void render(ShapeRenderer renderer) {
@@ -28,8 +33,12 @@ public class PlayerShip {
     }
 
     public void updatePoints(Player player) {
-        final float cos = (float) Math.cos(player.getAngle());
-        final float sin = (float) Math.sin(player.getAngle());
+        //Create unit vector of the player's velocity
+        mUnitVelocity.set(player.getVelocity());
+        mUnitVelocity.nor();
+        
+        final float cos = mUnitVelocity.x;
+        final float sin = mUnitVelocity.y;
 
         final float halfXSize = player.getSize().x / 2.f;
         final float halfYSize = player.getSize().y / 2.f;

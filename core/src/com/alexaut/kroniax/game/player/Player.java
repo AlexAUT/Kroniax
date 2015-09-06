@@ -12,8 +12,7 @@ public class Player {
     private Vector2 mPosition;
     private Vector2 mSize;
 
-    private float mVelocity;
-    private float mAngle;
+    private Vector2 mVelocity;
     private float mGravity;
 
     private PlayerShip mShip;
@@ -21,8 +20,7 @@ public class Player {
 
     private Vector2 mCachePosition;
     private Vector2 mCacheSize;
-    private float mCacheVelocity;
-    private float mCacheAngle;
+    private Vector2 mCacheVelocity;
     private float mCacheGravity;
 
     public Player(LevelProperties props) {
@@ -30,7 +28,7 @@ public class Player {
         mPosition = new Vector2(props.spawn);
 
         mSize = new Vector2(50, 35);
-        mVelocity = props.velocity;
+        mVelocity = new Vector2(props.velocity, 0.f);
         mGravity = props.gravity;
 
         mShip = new PlayerShip();
@@ -41,21 +39,18 @@ public class Player {
         // Cache start values for resetting the player
         mCachePosition = new Vector2(mPosition);
         mCacheSize = new Vector2(mSize);
-        mCacheVelocity = mVelocity;
-        mCacheAngle = mAngle;
+        mCacheVelocity = new Vector2(mVelocity.x, 0.f);
         mCacheGravity = mGravity;
     }
 
     public void update(float deltaTime) {
         // Update angle with gravity and user input
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isTouched())
-            mAngle += mGravity * deltaTime / 100.f;
+            mVelocity.y += mGravity * deltaTime;
         else
-            mAngle -= mGravity * deltaTime / 100.f;
+            mVelocity.y -= mGravity * deltaTime;
 
-        final float cos = (float) Math.cos(mAngle);
-        final float sin = (float) Math.sin(mAngle);
-        mPosition.mulAdd(new Vector2(cos * mVelocity, sin * mVelocity), deltaTime);
+        mPosition.mulAdd(mVelocity, deltaTime);
 
         mShip.updatePoints(this);
 
@@ -77,18 +72,17 @@ public class Player {
     }
 
     public void changeVelocity(float addition) {
-        mVelocity += addition;
+        mVelocity.x += addition;
     }
 
     public void changeGravity(float addition) {
         mGravity += addition;
     }
 
-    public void addCheckPoint(float x, float y, float angle) {
+    public void addCheckPoint(float x, float y, float yVelocity) {
         mCachePosition.set(x, y);
         mCacheSize.set(mSize);
-        mCacheVelocity = mVelocity;
-        mCacheAngle = angle;
+        mCacheVelocity.set(mVelocity.x, 0);
         mCacheGravity = mGravity;
     }
 
@@ -96,7 +90,6 @@ public class Player {
         mPosition.set(mCachePosition);
         mSize.set(mCacheSize);
         mVelocity = mCacheVelocity;
-        mAngle = mCacheAngle;
         mGravity = mCacheGravity;
         // Update player model
         mShip.updatePoints(this);
@@ -106,8 +99,8 @@ public class Player {
         mScriptTimers.reset();
     }
 
-    public float getAngle() {
-        return mAngle;
+    public Vector2 getVelocity() {
+        return mVelocity;
     }
 
     public void setPosition(Vector2 position) {
