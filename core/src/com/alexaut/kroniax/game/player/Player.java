@@ -89,7 +89,7 @@ public class Player {
     public void resetToCheckPoint() {
         mPosition.set(mCachePosition);
         mSize.set(mCacheSize);
-        mVelocity = mCacheVelocity;
+        mVelocity.set(mCacheVelocity);
         mGravity = mCacheGravity;
         // Update player model
         mShip.updatePoints(this);
