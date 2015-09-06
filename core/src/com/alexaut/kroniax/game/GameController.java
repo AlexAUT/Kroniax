@@ -69,12 +69,12 @@ public class GameController extends InputAdapter {
         if (newState == State.CRASHED) {
             mCrashedScene.clearActions();
             mCrashedScene.addAction(Actions.fadeIn(0.3f));
-            ignoreInput(0.5f);
+            ignoreInput(0.3f);
         }
 
         if (newState == State.FINISHED) {
-            mFinishScene.addAction(Actions.fadeIn(0.3f));
-            ignoreInput(0.5f);
+            mFinishScene.addAction(Actions.fadeIn(0.5f));
+            ignoreInput(0.35f);
         }
 
         if (newState == State.PAUSE) {
@@ -82,7 +82,7 @@ public class GameController extends InputAdapter {
         }
         
         if (newState == State.SHOW_MODAL) {
-            ignoreInput(1.0f);
+            ignoreInput(0.2f);
             mModalScene.addAction(Actions.fadeIn(0.3f));
         }
     }
