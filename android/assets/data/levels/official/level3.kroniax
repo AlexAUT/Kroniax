@@ -9,7 +9,7 @@
 [mapproperties]
 fixed_camera 
 gravity 350
-velocity 250
+velocity 275
 spawn_x 8
 spawn_y 9
 [/mapproperties]
@@ -497,6 +497,13 @@ finish 13860 30 30 300
 [rect]
 finish 13860 390 30 300
 [properties]
+[/properties]
+[/rect]
+[rect]
+speed_change 7200 30 30 660
+[properties]
+time 1
+value 50
 [/properties]
 [/rect]
 [/objects]
