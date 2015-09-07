@@ -78,6 +78,10 @@ public class Player {
     public void changeGravity(float addition) {
         mGravity += addition;
     }
+    
+    public void changeSize(float increaseX, float increaseY) {
+        mSize.add(increaseX, increaseY);
+    }
 
     public void addCheckPoint(float x, float y, float yVelocity) {
         mCachePosition.set(x, y);

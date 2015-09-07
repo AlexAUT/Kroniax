@@ -7,6 +7,7 @@ import com.alexaut.kroniax.game.scripts.CheckPointScript;
 import com.alexaut.kroniax.game.scripts.FinishScript;
 import com.alexaut.kroniax.game.scripts.GravityChangeScript;
 import com.alexaut.kroniax.game.scripts.Script;
+import com.alexaut.kroniax.game.scripts.SizeChangeScript;
 import com.alexaut.kroniax.game.scripts.SpeedChangeScript;
 import com.alexaut.kroniax.game.scripts.TutorialScript;
 import com.badlogic.gdx.Gdx;
@@ -199,6 +200,10 @@ public class TileMapLoader {
         } else if(type.equalsIgnoreCase("modal_text")) {
             if (properties_map.size() > 0)
                 script = new TutorialScript(properties_map.get("text"));
+        } else if(type.equalsIgnoreCase("size_change")) {
+            if (properties_map.size() > 2) {
+                script = new SizeChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value_x")), Float.parseFloat(properties_map.get("value_y")));
+            }
         }
 
         map.getScripts().add(script);
