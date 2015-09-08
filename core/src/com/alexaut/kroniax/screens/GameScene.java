@@ -95,7 +95,7 @@ public class GameScene implements Screen {
             mGameHUD.update(deltaTime);
 
             // Check collision
-            if (mLevel.checkCollision(mPlayer)) {
+            if (mLevel.checkCollision(mPlayer) && mGameController.getState() != State.FINISHED) {
                 mGameController.setState(State.CRASHED);
                 mGameHUD.addDeath();
             }
