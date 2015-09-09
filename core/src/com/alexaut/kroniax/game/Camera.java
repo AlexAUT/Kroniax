@@ -30,6 +30,10 @@ public class Camera {
         mCamera.setToOrtho(false, width, height);
         mCamera.update();
     }
+    
+    public void changeOffset(float changeX, float changeY) {
+        mCameraOffset.add(changeX, changeY);
+    }
 
     public OrthographicCamera getOrthoCamera() {
         return mCamera;
