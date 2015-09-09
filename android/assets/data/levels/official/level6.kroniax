@@ -740,4 +740,12 @@ finish 20610 210 180 120
 [properties]
 [/properties]
 [/rect]
+[rect]
+checkpoint 13500 90 30 540
+[properties]
+start_x 450
+start_y_velocity 0
+start_y 9
+[/properties]
+[/rect]
 [/objects]

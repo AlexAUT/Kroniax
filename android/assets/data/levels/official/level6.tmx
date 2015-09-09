@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="700" height="24" tilewidth="30" tileheight="30" nextobjectid="6">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="700" height="24" tilewidth="30" tileheight="30" nextobjectid="7">
  <properties>
   <property name="fixed_camera" value=""/>
   <property name="gravity" value="450"/>
@@ -57,5 +57,12 @@
    </properties>
   </object>
   <object id="5" type="finish" x="20610" y="210" width="180" height="120"/>
+  <object id="6" type="checkpoint" x="13500" y="90" width="30" height="540">
+   <properties>
+    <property name="start_x" value="450"/>
+    <property name="start_y" value="9"/>
+    <property name="start_y_velocity" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

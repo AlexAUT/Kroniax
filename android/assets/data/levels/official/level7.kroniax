@@ -765,6 +765,7 @@ Tile Layer 1
 23 423
 [/data]
 [properties]
+collision 
 [/properties]
 [/layer]
 [objects]
@@ -791,7 +792,7 @@ time 10
 [/properties]
 [/rect]
 [rect]
-checkpoint 13560 120 30 150
+checkpoint 13560 120 10 150
 [properties]
 start_x 452
 start_y_velocity 0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="800" height="24" tilewidth="30" tileheight="30" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="800" height="24" tilewidth="30" tileheight="30" nextobjectid="4">
  <properties>
   <property name="fixed_camera" value=""/>
   <property name="gravity" value="400"/>
@@ -42,7 +42,7 @@
 </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="1" type="size_change" x="7320" y="390" width="21" height="120">
+  <object id="1" type="size_change" x="7320" y="390" width="10" height="120">
    <properties>
     <property name="time" value="1"/>
     <property name="value_x" value="-15"/>
@@ -50,5 +50,12 @@
    </properties>
   </object>
   <object id="2" type="finish" x="20340" y="300" width="30" height="120"/>
+  <object id="3" type="checkpoint" x="7230" y="390" width="10" height="120">
+   <properties>
+    <property name="start_x" value="241"/>
+    <property name="start_y" value="14"/>
+    <property name="start_y_velocity" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

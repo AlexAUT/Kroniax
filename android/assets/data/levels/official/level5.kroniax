@@ -708,4 +708,12 @@ finish 19140 450 150 150
 [properties]
 [/properties]
 [/rect]
+[rect]
+checkpoint 11030 480 10 210
+[properties]
+start_x 367
+start_y_velocity 0
+start_y 18
+[/properties]
+[/rect]
 [/objects]
