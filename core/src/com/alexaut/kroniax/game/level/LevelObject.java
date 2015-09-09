@@ -40,6 +40,8 @@ public abstract class LevelObject {
             return new Color(0, 0, 0, 0);
         else if(mType.equalsIgnoreCase("size_change"))
             return Color.DARK_GRAY;
+        else if(mType.equalsIgnoreCase("camera_rotate"))
+            return Color.GOLD;
 
         return Color.WHITE;
     }
