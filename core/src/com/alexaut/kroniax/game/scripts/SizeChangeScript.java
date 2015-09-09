@@ -19,6 +19,6 @@ public class SizeChangeScript extends TimedScript {
     protected void updateWithInterp(float interp, GameController gameController, Level level, Player player,
             Camera camera) {
         player.changeSize(mValueX * interp, mValueY * interp);
-        player.updateScriptTimer(getElapsedPercentage(), Color.YELLOW);
+        player.updateScriptTimer(getElapsedPercentage(), Color.DARK_GRAY);
     }
 }
