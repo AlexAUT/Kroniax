@@ -25,13 +25,22 @@ public class RectLevelObject extends LevelObject {
 
     @Override
     public boolean checkCollision(Vector2 p1, Vector2 p2) {
+        //Intersect left edge
+        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos, mYPos, mXPos, mYPos + mHeight, null))
+            return true;
+        
+        //Intersect right edge
+        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos + mWidth, mYPos, mXPos + mWidth, mYPos + mHeight, null))
+            return true;
+        
+        //Intersect top edge
+        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos, mYPos + mHeight, mXPos + mWidth, mYPos + mHeight, null))
+            return true;
+        
+        //Intersect bottom edge
+        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos, mYPos, mXPos + mWidth, mYPos, null))
+            return true;
 
-        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mHalfX, mYPos, mHalfX, mYPos + mHeight, null)) {
-            return true;
-        }
-        if (Intersector.intersectSegments(p1.x, p1.y, p2.x, p2.y, mXPos, mHalfY, mXPos + mWidth, mHalfY, null)) {
-            return true;
-        }
         return false;
     }
 
