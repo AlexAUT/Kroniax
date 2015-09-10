@@ -1,5 +1,7 @@
 package com.alexaut.kroniax.screens;
 
+import java.nio.MappedByteBuffer;
+
 import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.menu.Gui;
 import com.alexaut.kroniax.menu.MenuBackground;
@@ -12,6 +14,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class MenuScene implements Screen {
 
+    private Application mApp;
+
     private MenuBackground mBackground;
     private Gui mGui;
 
@@ -21,6 +25,8 @@ public class MenuScene implements Screen {
     private ShapeRenderer mShapeRenderer;
 
     public MenuScene(Application app) {
+        mApp = app;
+
         mBackground = new MenuBackground();
         mGui = new Gui(app);
 
@@ -32,7 +38,8 @@ public class MenuScene implements Screen {
     public void show() {
         mMusic = Gdx.audio.newMusic(Gdx.files.internal("data/music/PowerFight-ElectroTechnoBeat.ogg"));
         mMusic.setVolume(0.75f);
-        mMusic.play();
+        if (mApp.isMusicEnabled())
+            mMusic.play();
         mMusic.setLooping(true);
 
         mGui.show();
@@ -64,13 +71,14 @@ public class MenuScene implements Screen {
     @Override
     public void pause() {
         // TODO Auto-generated method stub
-
+        mMusic.pause();
     }
 
     @Override
     public void resume() {
         // TODO Auto-generated method stub
-        mMusic.play();
+        if (mApp.isMusicEnabled())
+            mMusic.play();
     }
 
     @Override
@@ -83,6 +91,14 @@ public class MenuScene implements Screen {
     public void dispose() {
         // TODO Auto-generated method stub
         mGui.dispose();
+        mBackground.dispose();
         mMusic.dispose();
+    }
+
+    public void updateMusicState() {
+        if (mApp.isMusicEnabled())
+            mMusic.play();
+        else
+            mMusic.stop();
     }
 }

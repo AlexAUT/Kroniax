@@ -4,6 +4,7 @@ import com.alexaut.kroniax.game.ProgressManager;
 import com.alexaut.kroniax.screens.MenuScene;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -16,6 +17,7 @@ public class Application extends Game {
     private Skin mSkin;
 
     private ProgressManager mProgressManager;
+    private Preferences mSettings;
 
     private MenuScene mMenuScene;
 
@@ -25,6 +27,7 @@ public class Application extends Game {
         mShapeRenderer = new ShapeRenderer();
         mSkin = new Skin(Gdx.files.internal("data/skins/menu.json"));
         mProgressManager = new ProgressManager();
+        mSettings = Gdx.app.getPreferences("settings");
 
         mMenuScene = new MenuScene(this);
 
@@ -82,6 +85,17 @@ public class Application extends Game {
 
     public MenuScene getMenuScene() {
         return mMenuScene;
+    }
+
+    public void toogleMusicEnabled() {
+        boolean current = mSettings.getBoolean("music", true);
+        mSettings.putBoolean("music", !current);
+        mSettings.flush();
+        mMenuScene.updateMusicState();
+    }
+
+    public boolean isMusicEnabled() {
+        return mSettings.getBoolean("music", true);
     }
 
 }

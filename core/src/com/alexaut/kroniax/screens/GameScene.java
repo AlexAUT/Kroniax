@@ -75,7 +75,10 @@ public class GameScene implements Screen {
                     .newMusic(Gdx.files.internal("data/music/GalaxyNewElectroHouseTechnobyMafiaFLairBeatz.ogg"));
             mMusic.setVolume(0.5f);
             mMusic.setLooping(true);
-            mMusic.play();
+            if (mApp.isMusicEnabled())
+                mMusic.play();
+            else
+                mMusic.stop();
         }
 
         mGameHUD = new GameHUD(app);
@@ -181,7 +184,10 @@ public class GameScene implements Screen {
     @Override
     public void resume() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        mMusic.play();
+        if (mApp.isMusicEnabled())
+            mMusic.play();
+        else
+            mMusic.stop();
     }
 
     @Override

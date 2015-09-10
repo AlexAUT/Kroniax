@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 public class MainLayer extends Table {
 
@@ -35,7 +36,7 @@ public class MainLayer extends Table {
             }
         });
         add(bt).width(450).height(100);
-        row().padTop(50.f).padBottom(100.f);
+        row().padTop(50.f).padBottom(50.f);
 
         // Credits button
         bt = new TextButton("Credits", gui.getSkin());
@@ -53,6 +54,26 @@ public class MainLayer extends Table {
             }
         });
         add(bt).width(450).height(100);
+
+        row().padRight(900.f).padBottom(25.f);
+        if (gui.getApplication().isMusicEnabled())
+            bt = new TextButton("Music: on", gui.getSkin());
+        else
+            bt = new TextButton("Music: off", gui.getSkin());
+
+        bt.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                gui.getApplication().toogleMusicEnabled();
+                if (gui.getApplication().isMusicEnabled())
+                    ((TextButton) actor).setText("Music: on");
+                else
+                    ((TextButton) actor).setText("Music: off");
+            }
+        });
+
+        add(bt);
 
         pack(); // Don't remove
     }
