@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 public class ModalScene extends Table {
-    
+
     private Label mText;
-    
+
     public ModalScene(Application app) {
         setFillParent(true);
 
@@ -32,7 +32,7 @@ public class ModalScene extends Table {
 
         setColor(1, 1, 1, 0);
     }
-    
+
     public void setText(String text) {
         mText.setText(text);
     }

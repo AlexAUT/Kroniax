@@ -38,9 +38,9 @@ public abstract class LevelObject {
             return Color.ORANGE;
         else if (mType.equalsIgnoreCase("modal_text"))
             return new Color(0, 0, 0, 0);
-        else if(mType.equalsIgnoreCase("size_change"))
+        else if (mType.equalsIgnoreCase("size_change"))
             return Color.DARK_GRAY;
-        else if(mType.equalsIgnoreCase("camera_rotate"))
+        else if (mType.equalsIgnoreCase("camera_rotate"))
             return Color.GOLD;
 
         return Color.WHITE;

@@ -24,7 +24,7 @@ public class GameController extends InputAdapter {
     }
 
     private State mState;
-    
+
     private boolean mIgnoreInput;
 
     final private Matrix4 mIdentityMatrix;
@@ -39,7 +39,7 @@ public class GameController extends InputAdapter {
 
     public GameController(Application app) {
         mState = State.AT_START;
-        
+
         mIgnoreInput = false;
 
         mIdentityMatrix = new Matrix4();
@@ -80,35 +80,35 @@ public class GameController extends InputAdapter {
         if (newState == State.PAUSE) {
             mPauseScene.setColor(1, 1, 1, 1);
         }
-        
+
         if (newState == State.SHOW_MODAL) {
             ignoreInput(0.2f);
             mModalScene.addAction(Actions.fadeIn(0.3f));
         }
     }
-    
+
     private void setStateWithDelay(final State newState, float delay) {
         Timer.schedule(new Timer.Task() {
-            
+
             @Override
             public void run() {
                 mState = newState;
             }
         }, delay);
     }
-    
+
     public void ignoreInput(float duration) {
         mIgnoreInput = true;
-        
+
         Timer.schedule(new Timer.Task() {
-            
+
             @Override
             public void run() {
                 mIgnoreInput = false;
             }
         }, duration);
     }
-    
+
     public void setModalText(String newText) {
         mModalScene.setText(newText);
     }
@@ -155,9 +155,9 @@ public class GameController extends InputAdapter {
     }
 
     private boolean startButton() {
-        if(mIgnoreInput)
+        if (mIgnoreInput)
             return true;
-        
+
         if (mState == State.AT_START) {
             mStartScene.clearActions();
             mStartScene.addAction(Actions.fadeOut(0.25f));
@@ -182,7 +182,7 @@ public class GameController extends InputAdapter {
             mFinishScene.addAction(Actions.fadeOut(0.5f));
             setStateWithDelay(State.LOAD_NEXT_LEVEL, 0.5f);
         }
-        
+
         if (mState == State.SHOW_MODAL) {
             mModalScene.clearActions();
             mModalScene.addAction(Actions.fadeOut(0.5f));
@@ -193,9 +193,9 @@ public class GameController extends InputAdapter {
     }
 
     private boolean escapeKey() {
-        if(mIgnoreInput)
+        if (mIgnoreInput)
             return true;
-        
+
         if (mState == State.RUNNING) {
             mState = State.PAUSE;
             mPauseScene.clearActions();

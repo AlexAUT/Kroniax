@@ -35,7 +35,7 @@ public class GameHUD {
     public void render(SpriteBatch spriteBatch) {
         spriteBatch.setProjectionMatrix(mCamera.combined);
         spriteBatch.enableBlending();
-        mFont.draw(spriteBatch, "Time: " + (int)(mTime * 10.f) / 10.f, 5, 30);
+        mFont.draw(spriteBatch, "Time: " + (int) (mTime * 10.f) / 10.f, 5, 30);
         mFont.draw(spriteBatch, "Deaths: " + mTries, 5, 60);
         spriteBatch.disableBlending();
     }

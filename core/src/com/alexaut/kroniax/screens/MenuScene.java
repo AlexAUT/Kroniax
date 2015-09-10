@@ -11,19 +11,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class MenuScene implements Screen {
-    
+
     private MenuBackground mBackground;
     private Gui mGui;
 
     private Music mMusic;
-    
+
     private SpriteBatch mSpriteBatch;
     private ShapeRenderer mShapeRenderer;
 
     public MenuScene(Application app) {
         mBackground = new MenuBackground();
         mGui = new Gui(app);
-        
+
         mSpriteBatch = app.getSpriteBatch();
         mShapeRenderer = app.getShapeRenderer();
     }
@@ -47,9 +47,9 @@ public class MenuScene implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // mStage.getViewport().setCamera(mCamera);
-        
+
         mBackground.render(mSpriteBatch, mShapeRenderer);
-        
+
         mSpriteBatch.begin();
         mGui.render(mSpriteBatch);
         mSpriteBatch.end();

@@ -190,24 +190,31 @@ public class TileMapLoader {
             script = new FinishScript();
         } else if (type.equalsIgnoreCase("checkpoint")) {
             if (properties_map.size() > 1)
-                script = new CheckPointScript(Float.parseFloat(properties_map.get("start_x")), Float.parseFloat(properties_map.get("start_y")),
+                script = new CheckPointScript(Float.parseFloat(properties_map.get("start_x")),
+                        Float.parseFloat(properties_map.get("start_y")),
                         Float.parseFloat(properties_map.get("start_y_velocity")));
         } else if (type.equalsIgnoreCase("speed_change")) {
             if (properties_map.size() > 1)
-                script = new SpeedChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
+                script = new SpeedChangeScript(Float.parseFloat(properties_map.get("time")),
+                        Float.parseFloat(properties_map.get("value")));
         } else if (type.equalsIgnoreCase("gravity_change")) {
             if (properties_map.size() > 1)
-                script = new GravityChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value")));
-        } else if(type.equalsIgnoreCase("modal_text")) {
+                script = new GravityChangeScript(Float.parseFloat(properties_map.get("time")),
+                        Float.parseFloat(properties_map.get("value")));
+        } else if (type.equalsIgnoreCase("modal_text")) {
             if (properties_map.size() > 0)
                 script = new TutorialScript(properties_map.get("text"));
-        } else if(type.equalsIgnoreCase("size_change")) {
+        } else if (type.equalsIgnoreCase("size_change")) {
             if (properties_map.size() > 2) {
-                script = new SizeChangeScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("value_x")), Float.parseFloat(properties_map.get("value_y")));
+                script = new SizeChangeScript(Float.parseFloat(properties_map.get("time")),
+                        Float.parseFloat(properties_map.get("value_x")),
+                        Float.parseFloat(properties_map.get("value_y")));
             }
-        } else if(type.equalsIgnoreCase("camera_rotate")) {
+        } else if (type.equalsIgnoreCase("camera_rotate")) {
             if (properties_map.size() > 1) {
-                script = new CameraRotateScript(Float.parseFloat(properties_map.get("time")), Float.parseFloat(properties_map.get("angle")), Float.parseFloat(properties_map.get("offset_x")), Float.parseFloat(properties_map.get("offset_y")));
+                script = new CameraRotateScript(Float.parseFloat(properties_map.get("time")),
+                        Float.parseFloat(properties_map.get("angle")), Float.parseFloat(properties_map.get("offset_x")),
+                        Float.parseFloat(properties_map.get("offset_y")));
             }
         }
 

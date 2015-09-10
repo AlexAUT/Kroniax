@@ -78,7 +78,7 @@ public class Player {
     public void changeGravity(float addition) {
         mGravity += addition;
     }
-    
+
     public void changeSize(float increaseX, float increaseY) {
         mSize.add(increaseX, increaseY);
     }

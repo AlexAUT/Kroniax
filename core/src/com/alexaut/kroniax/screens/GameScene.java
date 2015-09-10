@@ -174,7 +174,7 @@ public class GameScene implements Screen {
     public void pause() {
         // TODO Auto-generated method stub
         mMusic.pause();
-        if(mGameController.isRunning())
+        if (mGameController.isRunning())
             mGameController.setState(State.PAUSE);
     }
 
