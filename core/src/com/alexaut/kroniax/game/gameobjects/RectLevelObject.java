@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 public class RectLevelObject extends LevelObject {
 
     private int mXPos, mYPos, mWidth, mHeight;
-    private int mHalfX, mHalfY;
 
     static Vector2 area = new Vector2();
 
@@ -18,9 +17,6 @@ public class RectLevelObject extends LevelObject {
         mHeight = height;
         mXPos = x;
         mYPos = y - height;
-
-        mHalfX = (int) (mXPos + (mWidth / 2.f));
-        mHalfY = (int) (mYPos + (mHeight / 2.f));
     }
 
     @Override
