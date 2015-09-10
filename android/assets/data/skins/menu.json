@@ -5,15 +5,23 @@ com.badlogic.gdx.graphics.Color: {
 	white: { a: 1, b: 1, g: 1, r: 1 },
 	red: { a: 1, b: 0, g: 0, r: 1 },
 	black: { a: 1, b: 0, g: 0, r: 0 },
+	blue: { a: 1, r: 0.18, g: 0.18, b: 0.31},
+	cyan: {a: 1, r: 0.678, g: 0.847, b: 0.902},
 },
 
+com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+        default-button-cyan: { name: default-button, color: cyan },
+        default-button-locked: { name: default-button, color: black },
+    },
+
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
-	default: { down: default-button, up: default-button },
-	toggle: { down: default-button, checked: default-button, up: default-button }
+	default: { down: default-button-cyan, up: default-button },
+	toggle: { down: default-button-cyan, checked: default-button, up: default-button }
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-	default: { down: default-button, up: default-button, font: default-font, fontColor: green, downFontColor: red },
-	toggle: { down: default-button, up: default-button, checked: default-button, font: default-font, fontColor: red, downFontColor: black }
+	default: { down: default-button-cyan, up: default-button, font: default-font, fontColor: blue, downFontColor: red },
+	toggle: { down: default-button-cyan, up: default-button, checked: default-button, font: default-font, fontColor: red, downFontColor: black }
+    locked: { down: default-button-locked, up: default-button-locked, checked: default-button-locked, font: default-font, fontColor: black}
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     default: { font: default-font }

@@ -14,9 +14,9 @@ default
 default-button
   rotate: false
   xy: 2, 2
-  size: 100, 40
-  split: 17, 17, 17, 17
-  orig: 100, 40
+  size: 150, 40
+  split: 28, 27, 18, 17
+  orig: 150, 40
   offset: 0, 0
   index: -1
 logo
