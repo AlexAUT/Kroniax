@@ -20,7 +20,7 @@ public class CameraRotateScript extends TimedScript {
     @Override
     protected void updateWithInterp(float interp, GameController gameController, Level level, Player player,
             Camera camera) {
-        camera.getOrthoCamera().rotate(mAngle * interp);
+        camera.changeRotation(mAngle * interp);
         camera.changeOffset(mOffsetX * interp, mOffsetY * interp);
 
         player.updateScriptTimer(getElapsedPercentage(), Color.GOLD);

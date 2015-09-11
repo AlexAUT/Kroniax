@@ -117,6 +117,7 @@ public class GameScene implements Screen {
         if (mGameController.getState() == State.RESET_TO_CHECKPOINT) {
             mPlayer.resetToCheckPoint();
             mGameController.setState(State.AT_START);
+            mCamera.resetToCheckpoint();
             mLevel.resetScripts();
         }
 

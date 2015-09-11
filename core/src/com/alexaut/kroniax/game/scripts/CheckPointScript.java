@@ -21,6 +21,7 @@ public class CheckPointScript extends Script {
         float x = mStartX * level.getProperties().tileSize.x;
         float y = (level.getProperties().tileCount.y - mStartY) * level.getProperties().tileSize.y;
         player.addCheckPoint(x, y, mStartYVelocity);
+        camera.addCheckpoint();
 
         // Signals that the event shouldn't get triggered again
         stop();

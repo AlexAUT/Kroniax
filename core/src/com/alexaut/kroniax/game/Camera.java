@@ -6,12 +6,31 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Camera {
     private OrthographicCamera mCamera;
-
+    
     Vector2 mCameraOffset;
+    float mRotation;
+    
+    Vector2 mCacheOffset;
+    float mCacheRotation;
 
     public Camera() {
         mCamera = new OrthographicCamera();
         mCameraOffset = new Vector2(300, 0);
+        mRotation = 0;
+        
+        mCacheOffset = new Vector2(mCameraOffset);
+        mCacheRotation = 0;
+    }
+    
+    public void addCheckpoint() {
+        mCacheOffset.set(mCameraOffset);
+        mCacheRotation = mRotation;
+    }
+    
+    public void resetToCheckpoint() {
+        mCameraOffset.set(mCacheOffset);
+        mCamera.rotate(mCacheRotation - mRotation);
+        mRotation = mCacheRotation;
     }
 
     public void update(Vector2 mPlayerPosition, boolean fixedCamera) {
@@ -33,6 +52,11 @@ public class Camera {
 
     public void changeOffset(float changeX, float changeY) {
         mCameraOffset.add(changeX, changeY);
+    }
+    
+    public void changeRotation(float angle) {
+        mRotation += angle;
+        mCamera.rotate(angle);
     }
 
     public OrthographicCamera getOrthoCamera() {
