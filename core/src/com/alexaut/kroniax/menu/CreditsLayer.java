@@ -29,6 +29,10 @@ public class CreditsLayer extends Table {
         row().padTop(40.f);
         label = new Label("Music created by MafiaFlairBeats", gui.getSkin());
         add(label);
+        
+        row().padTop(40.f);
+        label = new Label("Thanks to Micheal Goessler and Stefan Papst for playtesting", gui.getSkin());
+        add(label);
 
         row().padTop(100.f);
         // Back button, add credits above!
