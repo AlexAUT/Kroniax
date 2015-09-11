@@ -8,8 +8,8 @@
 30
 [mapproperties]
 fixed_camera 
-gravity 400
-velocity 400
+gravity 300
+velocity 300
 spawn_x 7
 spawn_y 5
 [/mapproperties]

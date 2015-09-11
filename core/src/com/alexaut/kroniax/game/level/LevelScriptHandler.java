@@ -39,6 +39,7 @@ public class LevelScriptHandler {
 
     public void resetScripts() {
         for (Script script : mScripts)
-            script.reset();
+            if(script != null)
+                script.reset();
     }
 }

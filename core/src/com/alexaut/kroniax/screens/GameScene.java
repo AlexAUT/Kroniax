@@ -128,7 +128,10 @@ public class GameScene implements Screen {
             Music cacheMusic = mMusic;
             mMusic = null;
             dispose();
-            mApp.setScreen(new GameScene(mApp, mLvlNumber + 1, cacheMusic));
+            if(mLvlNumber == 9)
+                goBackToMenu();
+            else
+                mApp.setScreen(new GameScene(mApp, mLvlNumber + 1, cacheMusic));
 
         }
 

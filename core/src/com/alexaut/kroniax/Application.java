@@ -20,7 +20,7 @@ public class Application extends Game {
     private Preferences mSettings;
 
     private MenuScene mMenuScene;
-
+    
     @Override
     public void create() {
         mSpriteBatch = new SpriteBatch();
@@ -57,6 +57,7 @@ public class Application extends Game {
 
     @Override
     public void render() {
+        
         // TODO Auto-generated method stub
         super.render();
     }

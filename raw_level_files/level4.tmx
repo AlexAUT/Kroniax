@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="800" height="24" tilewidth="30" tileheight="30" nextobjectid="4">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="800" height="24" tilewidth="30" tileheight="30" nextobjectid="6">
  <properties>
   <property name="fixed_camera" value=""/>
   <property name="gravity" value="400"/>
@@ -55,6 +55,11 @@
     <property name="start_x" value="241"/>
     <property name="start_y" value="14"/>
     <property name="start_y_velocity" value="0"/>
+   </properties>
+  </object>
+  <object id="5" type="modal_text" x="20310" y="300" width="30" height="120">
+   <properties>
+    <property name="text" value="Congratulation! You have passed all levels! More will be added in the future, if the app reaches 1000 Downloads in the PlayStore. I hope you enjoyed your ride! -Kroniax Developer Alexander Weinrauch"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,7 +1,5 @@
 package com.alexaut.kroniax.screens;
 
-import java.nio.MappedByteBuffer;
-
 import com.alexaut.kroniax.Application;
 import com.alexaut.kroniax.menu.Gui;
 import com.alexaut.kroniax.menu.MenuBackground;
